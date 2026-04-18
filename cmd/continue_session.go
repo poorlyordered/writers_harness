@@ -27,9 +27,13 @@ func runContinue(ctx context.Context) error {
 	switch state.Phase {
 	case "phase1":
 		return runPhase1(ctx)
-	case "phase2", "phase3", "phase4":
-		return fmt.Errorf("phase %s resume not yet implemented", state.Phase)
+	case "phase2":
+		return runPhase2(ctx)
+	case "phase3":
+		return runPhase3(ctx)
+	case "phase4":
+		return runPhase4(ctx)
 	default:
-		return fmt.Errorf("unknown phase %q in saved session", state.Phase)
+		return fmt.Errorf("unknown phase %q in saved session — use 'harness phase1' to restart", state.Phase)
 	}
 }
