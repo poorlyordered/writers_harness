@@ -10,14 +10,14 @@ import (
 	"strings"
 	"time"
 
+	"github.com/poorlyordered/writers_harness/internal/ai"
 	"github.com/poorlyordered/writers_harness/internal/qa"
 	"github.com/poorlyordered/writers_harness/internal/utils"
 )
 
 // Phase1Config holds everything the Phase 1 runner needs.
 type Phase1Config struct {
-	// Injected by the cmd layer.
-	AI          Conversation
+	AI          ai.Conversation
 	BoxWriter   FileWriter
 	LocalWriter FileWriter
 	Prompter    PromptLoader
@@ -25,14 +25,11 @@ type Phase1Config struct {
 	SeriesTitle  string
 	BookTitle    string
 	IsStandalone bool
-	DefaultGenre string // from config.Defaults.SettingGenre
+	DefaultGenre string
 }
 
-// Conversation is the interface the Phase 1 runner uses to talk to the AI.
-type Conversation interface {
-	Send(ctx context.Context, systemPrompt, userMessage string) (string, error)
-	ResetHistory()
-}
+// Conversation is an alias kept for backward compatibility within this package.
+type Conversation = ai.Conversation
 
 // FileWriter is the interface for writing a file (to Box or local storage).
 type FileWriter interface {

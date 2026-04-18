@@ -82,7 +82,7 @@ func RunPhase3(ctx context.Context, cfg Phase3Config) error {
 
 	// QA-3 pre-prose gate.
 	fmt.Printf("\n─── QA-3: PRE-PROSE READINESS GATE ────────────────────────\n")
-	qa3Result := qa.PreProse(computePreProseDoc(q))
+	qa3Result := qa.PreProse(qa.PreProseDocFromQueue(q))
 	fmt.Println(qa3Result.FormatFailures())
 	_ = qaLog.AppendResult(qa3Result, "Phase3→4 gate", nil)
 
@@ -95,8 +95,6 @@ func RunPhase3(ctx context.Context, cfg Phase3Config) error {
 	return nil
 }
 
-// buildOneCard runs the full draft/validate/save cycle for a single queue item.
-// It is recursive once on ResolveRetry to allow the writer to restart the conversation.
 func buildOneCard(ctx context.Context, cfg Phase3Config, systemPrompt string, q *queue.Queue, item *queue.QueueItem, qaLog *qa.Log) error {
 	fmt.Printf("\n─── CARD %d/%d: %s — %s", item.Priority, q.Progress.TotalCards, item.CardType, item.Name)
 	if item.CardSubtype != "" {
@@ -108,38 +106,43 @@ func buildOneCard(ctx context.Context, cfg Phase3Config, systemPrompt string, q 
 	fmt.Println()
 	fmt.Printf("    Source: %s\n    File: %s\n\n", strings.Join(item.SourceSections, ", "), item.Filename)
 
-	instruction := buildCardInstruction(item)
-	content, err := cards.Build(ctx, cfg.AI, systemPrompt, instruction)
-	if err != nil {
-		return fmt.Errorf("building card %q: %w", item.Name, err)
-	}
-
-	failures := cards.Validate(item.CardType, item.CardSubtype, content)
-	qa2Result := qa.CardCompletion(qa.CardQAInput{
-		CardType:        item.CardType,
-		CardSubtype:     item.CardSubtype,
-		Name:            item.Name,
-		ExistsInBox:     true,
-		IsLocked:        true,
-		VersionInHeader: true,
-		Failures:        failures,
-	})
-
-	if !qa2Result.Passed() {
-		fmt.Printf("\n─── QA-2 FAILURES ──────────────────────────────────────────\n")
-		choice, ids := qa.PresentAndChoose(qa2Result)
-		_ = qaLog.AppendResult(qa2Result, item.Name, ids)
-		switch choice {
-		case qa.ResolveBlock:
-			return fmt.Errorf("advancement blocked at card %q", item.Name)
-		case qa.ResolveRetry:
-			return buildOneCard(ctx, cfg, systemPrompt, q, item, qaLog)
+	for {
+		instruction := buildCardInstruction(item)
+		content, err := cards.Build(ctx, cfg.AI, systemPrompt, instruction)
+		if err != nil {
+			return fmt.Errorf("building card %q: %w", item.Name, err)
 		}
-		// ResolveOverride falls through and saves the card as-is.
-	} else {
-		_ = qaLog.AppendResult(qa2Result, item.Name, nil)
-	}
 
+		failures := cards.Validate(item.CardType, item.CardSubtype, content)
+		qa2Result := qa.CardCompletion(qa.CardQAInput{
+			CardType:        item.CardType,
+			CardSubtype:     item.CardSubtype,
+			Name:            item.Name,
+			ExistsInBox:     true,
+			IsLocked:        true,
+			VersionInHeader: true,
+			Failures:        failures,
+		})
+
+		if !qa2Result.Passed() {
+			fmt.Printf("\n─── QA-2 FAILURES ──────────────────────────────────────────\n")
+			choice, ids := qa.PresentAndChoose(qa2Result)
+			_ = qaLog.AppendResult(qa2Result, item.Name, ids)
+			switch choice {
+			case qa.ResolveBlock:
+				return fmt.Errorf("advancement blocked at card %q", item.Name)
+			case qa.ResolveRetry:
+				continue
+			}
+			// ResolveOverride: save the card as-is.
+			return saveCard(cfg, q, item, content)
+		}
+		_ = qaLog.AppendResult(qa2Result, item.Name, nil)
+		return saveCard(cfg, q, item, content)
+	}
+}
+
+func saveCard(cfg Phase3Config, q *queue.Queue, item *queue.QueueItem, content string) error {
 	locked := cards.Lock(content, item.CardType, item.Name, 1)
 	folder := utils.CardsFolder(cfg.SeriesTitle, cfg.BookTitle)
 	if err := cfg.BoxWriter.Write(folder, item.Filename, locked); err != nil {
@@ -155,7 +158,6 @@ func buildOneCard(ctx context.Context, cfg Phase3Config, systemPrompt string, q 
 	return nil
 }
 
-// buildCardInstruction constructs the AI draft instruction for one queue item.
 func buildCardInstruction(item *queue.QueueItem) string {
 	tierNote := ""
 	if item.Tier != nil {
@@ -176,7 +178,6 @@ func buildCardInstruction(item *queue.QueueItem) string {
 	)
 }
 
-// loadCardQueue reads the card queue from local storage.
 func loadCardQueue(cfg Phase3Config) (*queue.Queue, error) {
 	data, err := cfg.LocalReader.Read(
 		utils.QAFolder(cfg.SeriesTitle, cfg.BookTitle),
@@ -188,7 +189,6 @@ func loadCardQueue(cfg Phase3Config) (*queue.Queue, error) {
 	return queue.Unmarshal([]byte(data))
 }
 
-// saveCardQueue persists the queue to Box and local storage.
 func saveCardQueue(cfg Phase3Config, q *queue.Queue) error {
 	data, err := q.Marshal()
 	if err != nil {
@@ -205,58 +205,7 @@ func saveCardQueue(cfg Phase3Config, q *queue.Queue) error {
 	return nil
 }
 
-// computePreProseDoc inspects the completed queue to populate the QA-3 checklist.
-func computePreProseDoc(q *queue.Queue) qa.PreProseDoc {
-	doc := qa.PreProseDoc{
-		QueueComplete:      q.Progress.NotStarted == 0 && q.Progress.InProgress == 0,
-		NoOutstandingFlags: true,
-	}
 
-	charIndex := 0
-	for _, item := range q.Queue {
-		complete := item.Status == queue.StatusComplete
-		switch item.CardType {
-		case queue.CardTypeNovel:
-			doc.NovelLocked = complete
-		case queue.CardTypeWorld:
-			if item.CardSubtype == "Overview" {
-				doc.WorldOverviewLocked = complete
-			}
-			if item.CardSubtype == "Constraints" {
-				doc.WorldConstraintsLocked = complete
-			}
-		case queue.CardTypeCharacter:
-			if item.Tier != nil && *item.Tier == "FULL" && complete {
-				charIndex++
-				if charIndex == 1 {
-					doc.ProtagonistLocked = true
-				} else if charIndex == 2 {
-					doc.AntagonistLocked = true
-				}
-			}
-		case queue.CardTypeChapter:
-			if complete {
-				doc.ChapterCardsStarted = true
-			}
-		}
-	}
-
-	// AllFullTierLocked: every FULL tier card is complete.
-	fullTotal, fullDone := 0, 0
-	for _, item := range q.Queue {
-		if item.Tier != nil && *item.Tier == "FULL" {
-			fullTotal++
-			if item.Status == queue.StatusComplete {
-				fullDone++
-			}
-		}
-	}
-	doc.AllFullTierLocked = fullTotal > 0 && fullTotal == fullDone
-
-	return doc
-}
-
-// printQueueProgress shows a compact progress line.
 func printQueueProgress(q *queue.Queue) {
 	p := q.Progress
 	fmt.Printf("[HARNESS] Queue: %d total | %d complete | %d remaining (%.0f%%)\n",

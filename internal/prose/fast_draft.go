@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/poorlyordered/writers_harness/internal/ai"
 )
 
 // FastDraftParams describes a full chapter to fast-draft.
@@ -21,7 +23,7 @@ type FastDraftParams struct {
 // FastDraftChapter drafts all scenes in a chapter without per-scene pauses.
 // After all scenes are drafted it presents the full chapter for review.
 // Returns the map of scene number → prose content and any error.
-func FastDraftChapter(ctx context.Context, ai Conversation, systemPrompt string, p FastDraftParams) (map[int]string, error) {
+func FastDraftChapter(ctx context.Context, conv ai.Conversation, systemPrompt string, p FastDraftParams) (map[int]string, error) {
 	scenes := make(map[int]string, p.SceneCount)
 
 	fmt.Printf("\n[FAST DRAFT] Drafting Chapter %d (%s) — %d scenes, ~%d words each...\n",
@@ -29,14 +31,14 @@ func FastDraftChapter(ctx context.Context, ai Conversation, systemPrompt string,
 
 	for i := 1; i <= p.SceneCount; i++ {
 		fmt.Printf("[FAST DRAFT] Scene %d/%d...\n", i, p.SceneCount)
-		ai.ResetHistory()
+		conv.ResetHistory()
 		instruction := fmt.Sprintf(
 			"Fast-draft Scene %d of Chapter %d (%s) in ~%d words. POV: %s.\n"+
 				"No pauses. Write the complete scene: hook, turn point, closing beat.\n\n"+
 				"Context:\n%s",
 			i, p.ChapterNum, p.ChapterType, p.WordTarget, p.POVCharacter, p.Context,
 		)
-		resp, err := ai.Send(ctx, systemPrompt, instruction)
+		resp, err := conv.Send(ctx, systemPrompt, instruction)
 		if err != nil {
 			return nil, fmt.Errorf("fast draft scene %d failed: %w", i, err)
 		}
@@ -75,8 +77,8 @@ func FastDraftChapter(ctx context.Context, ai Conversation, systemPrompt string,
 			"Revise Scene %d of Chapter %d based on this note: %s\n\nCurrent draft:\n%s",
 			sceneNum, p.ChapterNum, note, scenes[sceneNum],
 		)
-		ai.ResetHistory()
-		revised, err := ai.Send(ctx, systemPrompt, reviseInstruction)
+		conv.ResetHistory()
+		revised, err := conv.Send(ctx, systemPrompt, reviseInstruction)
 		if err != nil {
 			fmt.Printf("[FAST DRAFT] Revision error: %v\n", err)
 			continue

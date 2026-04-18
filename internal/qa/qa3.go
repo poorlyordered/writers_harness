@@ -1,5 +1,57 @@
 package qa
 
+import "github.com/poorlyordered/writers_harness/internal/queue"
+
+// PreProseDocFromQueue builds a PreProseDoc by inspecting a completed card queue.
+func PreProseDocFromQueue(q *queue.Queue) PreProseDoc {
+	doc := PreProseDoc{
+		QueueComplete:      q.Progress.NotStarted == 0 && q.Progress.InProgress == 0,
+		NoOutstandingFlags: true,
+	}
+
+	charIndex := 0
+	for _, item := range q.Queue {
+		complete := item.Status == queue.StatusComplete
+		switch item.CardType {
+		case queue.CardTypeNovel:
+			doc.NovelLocked = complete
+		case queue.CardTypeWorld:
+			if item.CardSubtype == "Overview" {
+				doc.WorldOverviewLocked = complete
+			}
+			if item.CardSubtype == "Constraints" {
+				doc.WorldConstraintsLocked = complete
+			}
+		case queue.CardTypeCharacter:
+			if item.Tier != nil && *item.Tier == queue.TierFull && complete {
+				charIndex++
+				if charIndex == 1 {
+					doc.ProtagonistLocked = true
+				} else if charIndex == 2 {
+					doc.AntagonistLocked = true
+				}
+			}
+		case queue.CardTypeChapter:
+			if complete {
+				doc.ChapterCardsStarted = true
+			}
+		}
+	}
+
+	fullTotal, fullDone := 0, 0
+	for _, item := range q.Queue {
+		if item.Tier != nil && *item.Tier == queue.TierFull {
+			fullTotal++
+			if item.Status == queue.StatusComplete {
+				fullDone++
+			}
+		}
+	}
+	doc.AllFullTierLocked = fullTotal > 0 && fullTotal == fullDone
+
+	return doc
+}
+
 // PreProseDoc holds computed state for the QA-3 pre-prose readiness check.
 type PreProseDoc struct {
 	NovelLocked            bool

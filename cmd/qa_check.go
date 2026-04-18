@@ -106,59 +106,12 @@ func runQA3() error {
 		return fmt.Errorf("parsing card queue: %w", err)
 	}
 
-	doc := computePreProseDocFromQueue(q)
-	result := qa.PreProse(doc)
+	result := qa.PreProse(qa.PreProseDocFromQueue(q))
 	fmt.Println("\nQA-3: Pre-Prose Readiness Gate")
 	fmt.Println(result.FormatFailures())
 	return nil
 }
 
-// computePreProseDocFromQueue mirrors phases.computePreProseDoc without importing phases.
-func computePreProseDocFromQueue(q *queue.Queue) qa.PreProseDoc {
-	doc := qa.PreProseDoc{
-		QueueComplete:      q.Progress.NotStarted == 0 && q.Progress.InProgress == 0,
-		NoOutstandingFlags: true,
-	}
-	charIndex := 0
-	for _, item := range q.Queue {
-		complete := item.Status == queue.StatusComplete
-		switch item.CardType {
-		case queue.CardTypeNovel:
-			doc.NovelLocked = complete
-		case queue.CardTypeWorld:
-			if item.CardSubtype == "Overview" {
-				doc.WorldOverviewLocked = complete
-			}
-			if item.CardSubtype == "Constraints" {
-				doc.WorldConstraintsLocked = complete
-			}
-		case queue.CardTypeCharacter:
-			if item.Tier != nil && *item.Tier == "FULL" && complete {
-				charIndex++
-				if charIndex == 1 {
-					doc.ProtagonistLocked = true
-				} else if charIndex == 2 {
-					doc.AntagonistLocked = true
-				}
-			}
-		case queue.CardTypeChapter:
-			if complete {
-				doc.ChapterCardsStarted = true
-			}
-		}
-	}
-	fullTotal, fullDone := 0, 0
-	for _, item := range q.Queue {
-		if item.Tier != nil && *item.Tier == "FULL" {
-			fullTotal++
-			if item.Status == queue.StatusComplete {
-				fullDone++
-			}
-		}
-	}
-	doc.AllFullTierLocked = fullTotal > 0 && fullTotal == fullDone
-	return doc
-}
 
 // inferCardTypeFromFilename guesses the card type from a SPEC-007 filename.
 func inferCardTypeFromFilename(filename string) (cardType, subtype string) {

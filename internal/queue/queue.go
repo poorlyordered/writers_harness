@@ -28,6 +28,12 @@ const (
 	StatusComplete   = "COMPLETE"
 )
 
+// Tier constants for character/faction/threat cards.
+const (
+	TierFull   = "FULL"
+	TierSketch = "SKETCH"
+)
+
 // PhaseGateStatus constants.
 const (
 	GateInProgress       = "IN_PROGRESS"

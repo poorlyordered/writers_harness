@@ -13,6 +13,12 @@ import (
 	"github.com/poorlyordered/writers_harness/internal/utils"
 )
 
+const (
+	defaultSceneWordTarget = 2000
+	totalChapters          = 40
+	defaultScenesPerChapter = 3
+)
+
 // Phase4Config holds everything the Phase 4 runner needs.
 type Phase4Config struct {
 	AI              Conversation
@@ -27,12 +33,9 @@ type Phase4Config struct {
 	StartChapter    int  // resume from this chapter (1-based, 0 = start from 1)
 }
 
-// RunPhase4 executes the Phase 4 prose generation loop.
-// Chapters are written in sequence (1-40). Each chapter's scenes are drafted via
-// AI conversation, QA-4 checked, and assembled. The full manuscript is assembled on completion.
 func RunPhase4(ctx context.Context, cfg Phase4Config) error {
 	if cfg.SceneWordTarget == 0 {
-		cfg.SceneWordTarget = 2000
+		cfg.SceneWordTarget = defaultSceneWordTarget
 	}
 	startChapter := cfg.StartChapter
 	if startChapter < 1 {
@@ -76,7 +79,7 @@ func RunPhase4(ctx context.Context, cfg Phase4Config) error {
 	chapters := make(map[int]string) // chapterNum -> assembled chapter content
 	reader := bufio.NewReader(os.Stdin)
 
-	for chapterNum := startChapter; chapterNum <= 40; chapterNum++ {
+	for chapterNum := startChapter; chapterNum <= totalChapters; chapterNum++ {
 		chapterType := chapterTypeLabel(chapterNum)
 
 		fmt.Printf("\n─── CHAPTER %d: %s ──────────────────────────────────────\n",
@@ -91,7 +94,7 @@ func RunPhase4(ctx context.Context, cfg Phase4Config) error {
 			sceneMap, err = prose.FastDraftChapter(ctx, cfg.AI, systemPrompt, prose.FastDraftParams{
 				ChapterNum:   chapterNum,
 				ChapterType:  chapterType,
-				SceneCount:   3, // default 3 scenes per chapter
+				SceneCount:   defaultScenesPerChapter,
 				WordTarget:   cfg.SceneWordTarget,
 				POVCharacter: "Protagonist", // overridden by chapter card if available
 				Context:      chapterContext,
@@ -121,7 +124,7 @@ func RunPhase4(ctx context.Context, cfg Phase4Config) error {
 		fmt.Printf("[HARNESS] Chapter %d saved ✓  %s/%s\n", chapterNum, proseFolder, chapterFile)
 
 		// Ask writer if they want to continue, pause, or stop.
-		if chapterNum < 40 {
+		if chapterNum < totalChapters {
 			fmt.Printf("\n[HARNESS] Chapter %d complete. Continue to Chapter %d? [Y/n/stop]: ", chapterNum, chapterNum+1)
 			input, _ := reader.ReadString('\n')
 			input = strings.TrimSpace(strings.ToLower(input))
@@ -149,11 +152,9 @@ func RunPhase4(ctx context.Context, cfg Phase4Config) error {
 	wc := prose.WordCount(manuscript)
 	fmt.Printf("[HARNESS] Manuscript assembled ✓  %s  (~%d words)\n", msFile, wc)
 	fmt.Println("[HARNESS] Phase 4 complete. First draft ready for revision.")
-	_ = qaLog
 	return nil
 }
 
-// draftChapterScenes runs the scene-by-scene conversation loop for one chapter.
 func draftChapterScenes(
 	ctx context.Context,
 	cfg Phase4Config,
@@ -165,7 +166,7 @@ func draftChapterScenes(
 	qaLog *qa.Log,
 ) (map[int]string, error) {
 	sceneMap := make(map[int]string)
-	scenesPerChapter := 3 // default; writers can adjust via "skip" or by chapter card
+	scenesPerChapter := defaultScenesPerChapter
 
 	for sceneNum := 1; sceneNum <= scenesPerChapter; sceneNum++ {
 		rejections := 0
@@ -229,7 +230,6 @@ func draftChapterScenes(
 	return sceneMap, nil
 }
 
-// loadChapterContext reads the locked CHAPTER card from local storage for context.
 func loadChapterContext(cfg Phase4Config, chapterNum int) string {
 	filename := utils.ChapterCardFile(chapterNum, cfg.BookTitle, 1)
 	folder := utils.CardsFolder(cfg.SeriesTitle, cfg.BookTitle)
@@ -240,7 +240,6 @@ func loadChapterContext(cfg Phase4Config, chapterNum int) string {
 	return content
 }
 
-// chapterTypeLabel returns the 40-chapter structural label for the given chapter number.
 func chapterTypeLabel(n int) string {
 	labels := map[int]string{
 		1:  "Really Bad Day",

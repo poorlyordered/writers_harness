@@ -6,13 +6,9 @@ import (
 	"fmt"
 	"os"
 	"strings"
-)
 
-// Conversation is the minimal AI interface the generator needs.
-type Conversation interface {
-	Send(ctx context.Context, systemPrompt, userMessage string) (string, error)
-	ResetHistory()
-}
+	"github.com/poorlyordered/writers_harness/internal/ai"
+)
 
 // SceneParams describes the scene to draft.
 type SceneParams struct {
@@ -28,12 +24,12 @@ type SceneParams struct {
 // DraftScene runs an AI conversation to draft a single scene.
 // It loops until the writer types LOCK/CONFIRM or REJECT [reason].
 // Returns the confirmed prose, the rejection reason (if rejected), and any error.
-func DraftScene(ctx context.Context, ai Conversation, systemPrompt string, p SceneParams) (prose, rejectReason string, err error) {
-	ai.ResetHistory()
+func DraftScene(ctx context.Context, conv ai.Conversation, systemPrompt string, p SceneParams) (prose, rejectReason string, err error) {
+	conv.ResetHistory()
 
 	instruction := buildSceneInstruction(p)
 
-	resp, err := ai.Send(ctx, systemPrompt, instruction)
+	resp, err := conv.Send(ctx, systemPrompt, instruction)
 	if err != nil {
 		return "", "", fmt.Errorf("scene draft failed: %w", err)
 	}
@@ -61,7 +57,7 @@ func DraftScene(ctx context.Context, ai Conversation, systemPrompt string, p Sce
 			}
 			return "", reason, nil
 		}
-		resp, err = ai.Send(ctx, systemPrompt, input)
+		resp, err = conv.Send(ctx, systemPrompt, input)
 		if err != nil {
 			return "", "", fmt.Errorf("revision error: %w", err)
 		}

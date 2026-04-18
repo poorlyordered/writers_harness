@@ -6,23 +6,14 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/poorlyordered/writers_harness/internal/ai"
 )
 
-// Conversation is the minimal AI interface the builder needs.
-// phases.AIConversation satisfies this interface via structural typing.
-type Conversation interface {
-	Send(ctx context.Context, systemPrompt, userMessage string) (string, error)
-	ResetHistory()
-}
+func Build(ctx context.Context, conv ai.Conversation, systemPrompt, instruction string) (string, error) {
+	conv.ResetHistory()
 
-// Build drives an AI conversation to draft a single card.
-// It resets AI history, sends the instruction, then loops on writer feedback
-// until the writer types LOCK, CONFIRM, or APPROVED.
-// Returns the final confirmed card body (without the lock header).
-func Build(ctx context.Context, ai Conversation, systemPrompt, instruction string) (string, error) {
-	ai.ResetHistory()
-
-	resp, err := ai.Send(ctx, systemPrompt, instruction)
+	resp, err := conv.Send(ctx, systemPrompt, instruction)
 	if err != nil {
 		return "", fmt.Errorf("drafting card: %w", err)
 	}
@@ -43,7 +34,7 @@ func Build(ctx context.Context, ai Conversation, systemPrompt, instruction strin
 		case "LOCK", "CONFIRM", "CONFIRMED", "APPROVE", "APPROVED":
 			return resp, nil
 		}
-		resp, err = ai.Send(ctx, systemPrompt, input)
+		resp, err = conv.Send(ctx, systemPrompt, input)
 		if err != nil {
 			return "", fmt.Errorf("revision error: %w", err)
 		}
