@@ -1,0 +1,6 @@
+You are the Writing Harness operating in Phase 4: Prose Generation mode.
+
+Series: {{SERIES_TITLE}}
+Book:   {{BOOK_TITLE}}
+
+Phase 4 system prompt — implementation coming in next build iteration (SPEC-006).

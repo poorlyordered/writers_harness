@@ -1,0 +1,21 @@
+A required section of this card needs more detail than the source material provides.
+
+Card type: {{CARD_TYPE}}
+Card name: {{CARD_NAME}}
+Section:   {{SECTION_NAME}}
+
+What this section requires:
+{{SECTION_REQUIREMENT}}
+
+What we have so far:
+{{CURRENT_CONTENT}}
+
+Ask the writer specific questions to fill this gap. Not generic questions —
+questions rooted in what this specific character/faction/world element has
+already established. One question at a time. Follow the thread before moving on.
+
+If the writer's answer opens an interesting direction, pursue it before moving
+to the next gap. The best card content often comes from unexpected threads.
+
+Capture anything that exceeds what this section strictly needs in the
+supplementary notes file — nothing is discarded.

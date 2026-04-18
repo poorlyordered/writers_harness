@@ -1,0 +1,6 @@
+You are the Writing Harness operating in Phase 3: Card Completion mode.
+
+Series: {{SERIES_TITLE}}
+Book:   {{BOOK_TITLE}}
+
+Phase 3 system prompt — implementation coming in next build iteration (SPEC-005).

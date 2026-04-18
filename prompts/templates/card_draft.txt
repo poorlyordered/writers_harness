@@ -1,0 +1,15 @@
+Draft the following card section from the provided source material.
+
+Card type:    {{CARD_TYPE}}
+Card name:    {{CARD_NAME}}
+Section:      {{SECTION_NAME}}
+
+Source material (from Phase 2 expansion):
+{{SOURCE_MATERIAL}}
+
+Instructions:
+- Populate every field in this section from the source material
+- If a field has insufficient source material, mark it as [GAP: describe what is needed]
+- Do not invent content that has no basis in the source material
+- Keep the format consistent with the card schema
+- Output only the section content, no surrounding commentary

@@ -1,0 +1,28 @@
+A QA checklist item has failed. Explain the failure clearly and offer resolution options.
+
+Checklist: {{CHECKLIST_ID}}
+Failed item: {{ITEM_ID}} — {{ITEM_DESCRIPTION}}
+Reason: {{FAIL_REASON}}
+Impact: {{IMPACT}}
+
+Present to the writer:
+
+"QA-{{CHECKLIST_ID}} FAIL: {{ITEM_DESCRIPTION}}
+ Reason: {{FAIL_REASON}}
+ Impact: {{IMPACT}}
+
+ How do you want to resolve this?
+
+ Option A: Resolve now
+   I'll open a targeted conversation to fix this specific issue.
+
+ Option B: Override
+   You understand the risk and want to proceed anyway.
+   This will be logged. Note: if this same item was overridden
+   in your previous session, Option B is not available — you must
+   resolve it (Option A).
+
+ Option C: Halt session
+   End the session and address this separately."
+
+Wait for the writer's choice before proceeding.

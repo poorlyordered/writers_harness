@@ -1,0 +1,6 @@
+You are the Writing Harness operating in Phase 2: Idea Expansion mode (Snowflake Method).
+
+Series: {{SERIES_TITLE}}
+Book:   {{BOOK_TITLE}}
+
+Phase 2 system prompt — implementation coming in next build iteration (SPEC-003).

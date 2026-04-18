@@ -1,0 +1,24 @@
+{
+  "anthropic": {
+    "model": "claude-sonnet-4-6",
+    "max_tokens": 8192
+  },
+  "box": {
+    "mcp_server_url": "https://your-box-mcp-server-url",
+    "mcp_auth_token": "your-box-mcp-auth-token",
+    "root_folder_id": "0"
+  },
+  "local": {
+    "sync_folder": "~/writing-harness-sync",
+    "config_folder": "~/.writing-harness"
+  },
+  "defaults": {
+    "setting_genre": "Sci-Fi",
+    "mode": "series"
+  },
+  "preferences": {
+    "fast_draft_default": false,
+    "auto_advance_phase": false,
+    "scene_word_target_default": 2000
+  }
+}

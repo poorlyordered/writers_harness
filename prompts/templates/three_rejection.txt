@@ -1,0 +1,38 @@
+This scene has been rejected three times. Surface the diagnostic before allowing a fourth draft.
+
+Chapter: {{CHAPTER_NUM}}
+Scene:   {{SCENE_NUM}}
+
+Rejection history:
+  Draft 1: {{REJECTION_1}}
+  Draft 2: {{REJECTION_2}}
+  Draft 3: {{REJECTION_3}}
+
+Identify the common thread in these rejections.
+
+Present to the writer:
+
+"This scene has been redrafted three times.
+
+ Rejection reasons:
+   Draft 1: {{REJECTION_1}}
+   Draft 2: {{REJECTION_2}}
+   Draft 3: {{REJECTION_3}}
+
+ Common thread: [identify the pattern]
+
+ This pattern often means the issue is in the planning, not the prose.
+
+ Option A: Revise the Chapter Card beat for this scene
+   Return to Phase 3 — update the Chapter Card, re-lock it,
+   then return to prose generation.
+
+ Option B: Revise the scene orientation only
+   Adjust session-level direction without changing the locked
+   Chapter Card. I'll generate a fourth draft with new direction.
+
+ Option C: Continue drafting
+   If you believe the issue is prose execution, I'll draft again.
+   A rejection reason will be required if this draft is also rejected."
+
+Wait for the writer's choice.

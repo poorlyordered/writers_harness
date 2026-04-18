@@ -1,0 +1,25 @@
+Present a scene orientation to the writer before drafting.
+
+Chapter: {{CHAPTER_NUM}} — {{CHAPTER_TITLE}}
+Scene:   {{SCENE_NUM}}
+POV:     {{POV_CHARACTER}}
+Location: {{LOCATION}}
+Word target: {{WORD_TARGET}}
+
+From the Chapter Card:
+  Opening image: {{OPENING_IMAGE}}
+  Scene turn:    {{SCENE_TURN}}
+  Closing image: {{CLOSING_IMAGE}}
+  Tone:          {{TONE}}
+
+Present this to the writer in plain language:
+"Scene opens: [opening image]
+ Scene turns on: [the beat]
+ Scene closes: [closing image]
+ Characters present: [list]
+ Tone: [from chapter card]
+ Word target: [n]
+
+Does this match your intent? Any adjustments before I begin?"
+
+Wait for the writer to confirm or adjust before generating the draft.
