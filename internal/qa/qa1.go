@@ -126,6 +126,73 @@ func Phase1To2(seed SeedDocument) *Result {
 	return r
 }
 
+// ExpansionDocument represents the parsed state of a locked Expansion document
+// for the Phase 2→3 gate check.
+type ExpansionDocument struct {
+	ExistsInBox           bool
+	Step1Locked           bool // Logline
+	Step2Locked           bool // Story paragraph
+	Step3Locked           bool // Character summaries
+	Step4Locked           bool // Full synopsis
+	Step5Locked           bool // Character arcs
+	Step6Locked           bool // Act breakdown
+	Step7Locked           bool // Character detail sheets
+	StoryCircleMapPresent bool
+	FortyChapterMapPresent bool
+	SevenPlotsConfirmed   bool
+	SubplotWeavePresent   bool
+	FullTierCharsComplete bool
+	SketchTierPresent     bool  // may be vacuously true if no sketch chars
+	CardQueueGenerated    bool
+	CardQueueHasMinimum   bool  // Trilogy (if series), World, Novel, Protagonist, Antagonist
+	IsStandalone          bool
+	NoNeedsReviewFlags    bool
+	NoCardRequiredFlags   bool
+	NotContradictseed     bool
+}
+
+// Phase2To3 runs the QA-1 Phase 2→3 gate checklist (SPEC-004C §4).
+func Phase2To3(exp ExpansionDocument) *Result {
+	r := &Result{ChecklistID: "1 (Phase 2→3)"}
+
+	check := func(id, desc string, pass bool, reason string) {
+		r.Items = append(r.Items, CheckItem{
+			ID:          id,
+			Description: desc,
+			Passed:      pass,
+			FailReason:  reason,
+		})
+	}
+
+	check("2.1",  "Expansion document exists in Box at correct path", exp.ExistsInBox, "file not found in Box")
+	check("2.2",  "Step 1 (Logline) present and locked", exp.Step1Locked, "")
+	check("2.3",  "Step 2 (Story paragraph + Story Circle map) present and locked", exp.Step2Locked, "")
+	check("2.4",  "Step 3 (Character summaries) present and locked", exp.Step3Locked, "")
+	check("2.5",  "Step 4 (Full synopsis + 40-chapter beat map) present and locked", exp.Step4Locked, "")
+	check("2.6",  "Step 5 (Character arc expansions) present and locked", exp.Step5Locked, "")
+	check("2.7",  "Step 6 (Act breakdown + subplot weave) present and locked", exp.Step6Locked, "")
+	check("2.8",  "Step 7 (Character detail sheets) present and locked", exp.Step7Locked, "")
+	check("2.9",  "Story Circle map attached to Step 2", exp.StoryCircleMapPresent, "")
+	check("2.10", "40-chapter beat map attached to Step 4", exp.FortyChapterMapPresent, "")
+	check("2.11", "Seven Basic Plots pattern confirmed in Step 6", exp.SevenPlotsConfirmed, "")
+	check("2.12", "Subplot weave map present in Step 6", exp.SubplotWeavePresent, "")
+	check("2.13", "All FULL tier character detail sheets card-ready", exp.FullTierCharsComplete, "")
+	check("2.14", "Sketch tier character sheets present", exp.SketchTierPresent, "")
+	check("2.15", "Phase 3 Card Queue generated and saved to Box", exp.CardQueueGenerated, "")
+
+	if exp.IsStandalone {
+		check("2.16", "Card Queue minimum: World, Novel, Protagonist, Antagonist (standalone)", exp.CardQueueHasMinimum, "")
+	} else {
+		check("2.16", "Card Queue minimum: Trilogy, World, Novel, Protagonist, Antagonist (series)", exp.CardQueueHasMinimum, "")
+	}
+
+	check("2.17", "No NEEDS-REVIEW flags outstanding on Expansion document", exp.NoNeedsReviewFlags, "")
+	check("2.18", "No CARD-REQUIRED flags outstanding", exp.NoCardRequiredFlags, "")
+	check("2.19", "Expansion document does not contradict Seed Prompt", exp.NotContradictseed, "")
+
+	return r
+}
+
 func plural(n int) string {
 	if n == 1 {
 		return ""
