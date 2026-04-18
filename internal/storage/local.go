@@ -72,6 +72,11 @@ func (l *Local) ListFiles(boxPath, prefix string) ([]string, error) {
 	return names, nil
 }
 
+// AbsPath returns the absolute filesystem path for the given Box-relative folder and filename.
+func (l *Local) AbsPath(boxFolder, filename string) string {
+	return filepath.Join(l.fullPath(boxFolder), filename)
+}
+
 func (l *Local) fullPath(boxPath string) string {
 	// Treat boxPath as relative to the sync root; strip leading slash if present.
 	cleaned := strings.TrimPrefix(boxPath, "/")
