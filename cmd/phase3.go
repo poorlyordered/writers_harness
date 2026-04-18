@@ -6,6 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
+	"github.com/poorlyordered/writers_harness/internal/index"
 	"github.com/poorlyordered/writers_harness/internal/phases"
 	"github.com/poorlyordered/writers_harness/internal/session"
 	"github.com/poorlyordered/writers_harness/internal/storage"
@@ -45,6 +46,10 @@ func runPhase3(ctx context.Context) error {
 		return fmt.Errorf("saving session: %w", err)
 	}
 
+	idx := index.NewEmpty(state.SeriesTitle)
+	book := idx.EnsureBook(state.BookTitle, state.BookNum)
+	book.Phase = "3"
+
 	pCfg := phases.Phase3Config{
 		AI:               phases.NewAIConversation(aiClient),
 		BoxWriter:        phases.NewBoxFileWriter(aiClient),
@@ -53,8 +58,10 @@ func runPhase3(ctx context.Context) error {
 		Prompter:         prompter,
 		SeriesTitle:      state.SeriesTitle,
 		BookTitle:        state.BookTitle,
+		BookNum:          state.BookNum,
 		IsStandalone:     cfg.Defaults.Mode == "standalone",
 		ExpansionContent: expandContent,
+		Idx:              idx,
 	}
 
 	return phases.RunPhase3(ctx, pCfg)

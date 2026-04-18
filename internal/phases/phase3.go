@@ -4,8 +4,10 @@ import (
 	"context"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/poorlyordered/writers_harness/internal/cards"
+	"github.com/poorlyordered/writers_harness/internal/index"
 	"github.com/poorlyordered/writers_harness/internal/qa"
 	"github.com/poorlyordered/writers_harness/internal/queue"
 	"github.com/poorlyordered/writers_harness/internal/storage"
@@ -21,8 +23,10 @@ type Phase3Config struct {
 	Prompter         PromptLoader
 	SeriesTitle      string
 	BookTitle        string
+	BookNum          int
 	IsStandalone     bool
 	ExpansionContent string
+	Idx              *index.Index // updated as cards are locked; saved on phase completion
 }
 
 // RunPhase3 executes the Phase 3 card completion loop.
@@ -92,6 +96,7 @@ func RunPhase3(ctx context.Context, cfg Phase3Config) error {
 	}
 
 	fmt.Println("[HARNESS] QA-3 PASSED ✓  Phase 3 complete. Ready to advance to Phase 4.")
+	saveIndex(cfg)
 	return nil
 }
 
@@ -154,8 +159,38 @@ func saveCard(cfg Phase3Config, q *queue.Queue, item *queue.QueueItem, content s
 	if err := q.MarkComplete(item.Priority, item.Filename); err != nil {
 		return fmt.Errorf("updating queue: %w", err)
 	}
+	if cfg.Idx != nil {
+		tier := ""
+		if item.Tier != nil {
+			tier = *item.Tier
+		}
+		cfg.Idx.AddBookCard(cfg.BookTitle, cfg.BookNum, index.Entry{
+			Name:        item.Name,
+			CardType:    item.CardType,
+			Tier:        tier,
+			Version:     1,
+			Status:      "LOCKED",
+			LastUpdated: time.Now().Format("2006-01-02"),
+			BookTitle:   cfg.BookTitle,
+		})
+	}
 	fmt.Printf("[HARNESS] Card locked ✓  %s/%s\n", folder, item.Filename)
 	return nil
+}
+
+func saveIndex(cfg Phase3Config) {
+	if cfg.Idx == nil {
+		return
+	}
+	content := cfg.Idx.Render()
+	idxFile := utils.SeriesIndexFile(cfg.SeriesTitle)
+	idxFolder := utils.SeriesRoot(cfg.SeriesTitle)
+	if err := cfg.BoxWriter.Write(idxFolder, idxFile, content); err != nil {
+		fmt.Printf("[HARNESS] Warning: Series Index Box save failed: %v\n", err)
+	}
+	if err := cfg.LocalWriter.Write(idxFolder, idxFile, content); err != nil {
+		fmt.Printf("[HARNESS] Warning: Series Index local save failed: %v\n", err)
+	}
 }
 
 func buildCardInstruction(item *queue.QueueItem) string {

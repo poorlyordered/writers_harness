@@ -328,6 +328,19 @@ func RunPhase2(ctx context.Context, cfg Phase2Config) error {
 		return fmt.Errorf("QA-1 phase 2→3 gate failed: %d item(s) did not pass", len(result.FailedItems()))
 	}
 
+	// Gate passed: stamp the queue with Phase 2 complete status and re-save.
+	cardQueue.PhaseGateStatus = queue.GatePhase2Complete
+	queueJSON, err = cardQueue.Marshal()
+	if err != nil {
+		return fmt.Errorf("re-marshalling card queue after gate: %w", err)
+	}
+	if err := cfg.BoxWriter.Write(queueFolder, queueFile, string(queueJSON)); err != nil {
+		return fmt.Errorf("updating card queue gate status in Box: %w", err)
+	}
+	if err := cfg.LocalWriter.Write(queueFolder, queueFile, string(queueJSON)); err != nil {
+		fmt.Printf("[HARNESS] Warning: local queue gate update failed: %v\n", err)
+	}
+
 	fmt.Println("[HARNESS] QA-1 PASSED ✓  Phase 2 complete. Ready to advance to Phase 3.")
 	return nil
 }
