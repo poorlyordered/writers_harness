@@ -4,16 +4,32 @@ Go CLI that guides a writer through 4 phases of science fiction story developmen
 
 ## Commands
 
+### Phase commands (first-pass pipeline)
 ```
 harness new-series      # Create Box folder tree + Series Index, set session to Phase 1
 harness new-book        # Add a second book to an existing series
 harness phase1          # Phase 1: Idea Generation (seed prompt + deepening conversation)
-harness phase2          # Phase 2: Snowflake expansion (7 steps) + Card Queue generation
+harness phase2          # Phase 2: Snowflake expansion (7 steps) + Card Queue + templates
 harness phase3          # Phase 3: Card Completion (queue-driven, AI drafts each card)
 harness phase4          # Phase 4: Prose Generation (scene-by-scene, 40 chapters)
 harness phase4 --fast   # Fast-draft mode: draft full chapter then review
 harness phase4 --chapter 12  # Resume at chapter 12
 harness continue        # Resume most recent session (any phase)
+```
+
+### Mode commands (ongoing, any phase)
+```
+harness idea                              # Brainstorm freely — nothing saves unless you type SAVE
+harness build --card CHAR --name "Name"   # Create or update a specific card
+harness build --card WORLD --subtype Overview
+harness build --card NOVEL
+harness write --chapter 5                 # Draft all scenes in chapter 5
+harness write --chapter 5 --scene 2       # Draft only scene 2 of chapter 5
+harness check <filename>                  # Post-edit consistency check against locked canon
+```
+
+### Utility commands
+```
 harness status          # Show queue progress, next card, QA log summary
 harness sync            # Re-push SYNC-PENDING files to Box
 harness qa-check 2 <file>  # Validate a card file from local sync
