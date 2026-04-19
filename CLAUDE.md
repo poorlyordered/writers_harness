@@ -2,6 +2,27 @@
 
 Go CLI that guides a writer through 4 phases of science fiction story development using a card-driven, phase-gated, AI-assisted process. All persistent state lives in Box; the Go app injects Box MCP config into every Anthropic API request so Claude handles Box I/O natively.
 
+## Claude Code Skills (Slash Commands)
+
+These skills make Claude Code a direct co-creative partner. Use them instead of (or alongside) the CLI commands for all ongoing writing work.
+
+| Skill | Purpose |
+|-------|---------|
+| `/harness-context` | Load session state + all cards into context — start every writing session here |
+| `/harness-status` | Quick queue/phase status without loading card content |
+| `/harness-idea [topic]` | Brainstorm mode — nothing saves to canon unless you type SAVE |
+| `/harness-build --card TYPE [--name N] [--subtype S]` | Build or revise a control card interactively |
+| `/harness-write --chapter N [--scene N] [--words N]` | Draft prose scene-by-scene with full card context |
+| `/harness-check <filename>` | Consistency check an edited file against all locked canon |
+
+**Workflow:** `/harness-context` → creative work via other skills → LOCK to commit → `harness sync` to push to Box.
+
+**Keywords during any skill session:**
+- `LOCK` / `CONFIRM` — save and lock the current card or scene
+- `SAVE` — (idea mode) write current idea as a note without locking
+- `REJECT [reason]` — discard current draft and redraft
+- `EXIT` / `DONE` — end the session
+
 ## Commands
 
 ### Phase commands (first-pass pipeline)
