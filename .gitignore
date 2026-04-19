@@ -1,5 +1,30 @@
+# Config (contains API keys and Box tokens)
 config.json
-~/writing-harness-sync/
-~/.writing-harness/
+
+# Built binary
 harness
+harness.exe
 *.exe
+
+# Local sync folder (writing content — not tracked in repo)
+writing-harness-sync/
+~/writing-harness-sync/
+
+# Session and config state
+~/.writing-harness/
+.writing-harness/
+
+# Go build artifacts
+/dist/
+*.test
+*.out
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
