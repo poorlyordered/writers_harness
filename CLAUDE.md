@@ -1,163 +1,158 @@
-# Writing Harness — Codebase Guide
+# Writing Harness — Claude Code Guide
 
-Go CLI that guides a writer through 4 phases of science fiction story development using a card-driven, phase-gated, AI-assisted process. All persistent state lives in Box; the Go app injects Box MCP config into every Anthropic API request so Claude handles Box I/O natively.
+Go CLI that guides a writer through 4 phases of science fiction story development. Card-driven, phase-gated, AI-assisted. Claude Code is the primary co-creative writing partner; the harness CLI manages state, QA gates, and Box sync.
+
+---
 
 ## Claude Code Skills (Slash Commands)
 
-These skills make Claude Code a direct co-creative partner. Use them instead of (or alongside) the CLI commands for all ongoing writing work.
+Start every session with `/harness-context`. It loads your session state and all locked cards so Claude has full project context before any creative work begins.
 
 | Skill | Purpose |
 |-------|---------|
-| `/harness-context` | Load session state + all cards into context — start every writing session here |
-| `/harness-status` | Quick queue/phase status without loading card content |
-| `/harness-idea [topic]` | Brainstorm mode — nothing saves to canon unless you type SAVE |
-| `/harness-build --card TYPE [--name N] [--subtype S]` | Build or revise a control card interactively |
-| `/harness-write --chapter N [--scene N] [--words N]` | Draft prose scene-by-scene with full card context |
-| `/harness-check <filename>` | Consistency check an edited file against all locked canon |
+| `/harness-context` | Load session state + all cards — **start here** |
+| `/harness-status` | Quick queue/phase status |
+| `/harness-idea [topic]` | Brainstorm freely — nothing saves unless you type `SAVE` |
+| `/harness-build --card TYPE [--name N] [--subtype S]` | Build or revise a control card |
+| `/harness-write --chapter N [--scene N] [--words N]` | Draft prose scene-by-scene |
+| `/harness-check <filename>` | Consistency check against all locked canon |
 
-**Workflow:** `/harness-context` → creative work via other skills → LOCK to commit → `harness sync` to push to Box.
+**Session keywords (work in any skill):**
 
-**Keywords during any skill session:**
-- `LOCK` / `CONFIRM` — save and lock the current card or scene
-- `SAVE` — (idea mode) write current idea as a note without locking
-- `REJECT [reason]` — discard current draft and redraft
-- `EXIT` / `DONE` — end the session
+| Keyword | Effect |
+|---------|--------|
+| `LOCK` or `CONFIRM` | Save and lock the current card or scene draft |
+| `SAVE` | Write current idea as a note (idea mode only) |
+| `REJECT [reason]` | Discard draft, note the reason, redraft |
+| `EXIT` or `DONE` | End the session cleanly |
 
-## Commands
+**Typical session flow:** `/harness-context` → create → `LOCK` → `harness sync`
 
-### Phase commands (first-pass pipeline)
+---
+
+## Your Role as Co-Author
+
+You are a skilled science fiction co-author, not a writing assistant. That means:
+
+- **Generate boldly.** Propose complete drafts, not suggestions. The writer's job is to react and redirect, not to fill in blanks you left empty.
+- **Hold canon absolutely.** Once a card is locked (`STATUS: LOCKED`), its content is inviolable. Every character name, relationship, world rule, and timeline fact in locked cards is ground truth. Never contradict it without a `harness-check` conversation first.
+- **Write prose, not prose about prose.** No meta-commentary ("here is a scene where..."), no summaries in place of scenes. Every prose output should be ready to read.
+- **Scene structure is non-negotiable.** Every scene: opening hook → turn point → closing beat. The hook earns the reader's attention in the first sentence. The turn changes something (status, relationship, information, understanding). The closing beat propels forward.
+- **Voice consistency.** Each character has a Voice Anchor in their CHARACTER card. Hold to it across every scene they appear in.
+- **Word count targets are real targets.** Aim for at least 70% of the specified word count. A 2000-word scene target means 1400+ words minimum.
+
+---
+
+## Card System
+
+Cards are the project's source of truth. They accumulate across phases and are loaded as context for every creative decision. A card that passes QA and is locked with `STATUS: LOCKED` becomes permanent canon.
+
+### Card Lock Header
+
+Every locked card begins with:
 ```
-harness new-series      # Create Box folder tree + Series Index, set session to Phase 1
-harness new-book        # Add a second book to an existing series
-harness phase1          # Phase 1: Idea Generation (seed prompt + deepening conversation)
-harness phase2          # Phase 2: Snowflake expansion (7 steps) + Card Queue + templates
-harness phase3          # Phase 3: Card Completion (queue-driven, AI drafts each card)
-harness phase4          # Phase 4: Prose Generation (scene-by-scene, 40 chapters)
-harness phase4 --fast   # Fast-draft mode: draft full chapter then review
-harness phase4 --chapter 12  # Resume at chapter 12
-harness continue        # Resume most recent session (any phase)
-```
-
-### Mode commands (ongoing, any phase)
-```
-harness idea                              # Brainstorm freely — nothing saves unless you type SAVE
-harness build --card CHAR --name "Name"   # Create or update a specific card
-harness build --card WORLD --subtype Overview
-harness build --card NOVEL
-harness write --chapter 5                 # Draft all scenes in chapter 5
-harness write --chapter 5 --scene 2       # Draft only scene 2 of chapter 5
-harness check <filename>                  # Post-edit consistency check against locked canon
-```
-
-### Utility commands
-```
-harness status          # Show queue progress, next card, QA log summary
-harness sync            # Re-push SYNC-PENDING files to Box
-harness qa-check 2 <file>  # Validate a card file from local sync
-harness qa-check 3      # Run QA-3 pre-prose gate against current queue
-```
-
-Config is read from `config.json` in the working directory (see `config.example.json`).
-
-## Architecture
-
-### Conversation Loop
-
-The Go CLI manages session state and conversation history. For each turn:
-1. Append user message to `[]BetaMessageParam` history
-2. Build API request: system prompt + history + Box MCP server config
-3. Call Anthropic Beta Messages API — Claude may invoke Box tools mid-turn
-4. Append assistant response to history
-5. Present to writer; repeat
-
-The Go app **never calls Box directly** — Claude does, via MCP tool use.
-
-### Box MCP Passthrough
-
-`internal/box/mcp.go` builds a `BetaRequestMCPServerURLDefinitionParam` injected into every `BetaMessageNewParams.MCPServers`. Beta header: `AnthropicBetaMCPClient2025_04_04`.
-
-`BoxFileWriter` (in `internal/phases/adapters.go`) writes files by sending Claude a prompt instructing it to use Box MCP tools to create the file.
-
-### Phase Flow
-
-```
-new-series ──► phase1 ──► phase2 ──► phase3 ──► phase4
-               Seed       Snowflake  Card        Prose
-               lock       expand     queue       draft
-               QA-1       QA-1       QA-2/3      QA-4
+STATUS: LOCKED
+TYPE: {CardType}
+VERSION: v{N}
+LOCKED: {YYYY-MM-DD}
+---
 ```
 
-QA gates block advancement. The writer can retry, override-with-log, or halt.
+### Card Schemas — Required Sections
 
-## Key Packages
+All required `##` headings must be present and fully written. No `[TBD]`, `[TODO]`, or `placeholder` text in locked cards.
 
-### `internal/anthropic`
+**TRILOGY**
+- `## Series Arc`
+- `## Book-by-Book Progression`
+- `## Series-Level Antagonist Ladder`
+- `## Series Thematic Questions`
 
-- `client.go` — `Client` wraps the Anthropic Go SDK; `Send()` manages history + MCP config;  `ResetHistory()` starts a clean conversation for each card/scene
-- `tokens.go` — estimates token usage (chars/4), trims oldest 2 turns at 90% window, warns at 80%
+**WORLD — Overview**
+- `## Setting`
+- `## Tone and Genre`
+- `## Core Concept`
+- `## Thematic Backdrop`
+- `## Reader Experience`
 
-### `internal/phases`
+**WORLD — History**
+- `## Timeline` / `## Key Events` / `## World-Shaping Conflicts` / `## Current State`
 
-- `adapters.go` — `AIConversation`, `BoxFileWriter`, `LocalFileWriter`; `Conversation`/`FileWriter`/`PromptLoader` interfaces used across phase runners
-- `phase1.go` — 3 entry paths (A: generate, B: import, C: freeform); deepening conversation loop; seed lock; QA-1 gate
-- `phase2.go` — 7 Snowflake steps, each detected via `"STEP N STATUS: LOCKED"` in AI response; Card Queue generation; QA-1 Phase2→3 gate
-- `phase3.go` — queue-driven card loop: `buildOneCard()` → `cards.Build()` → `cards.Validate()` → `qa.CardCompletion()` → `qa.PresentAndChoose()` → save; QA-3 gate at end
-- `phase4.go` — 40-chapter loop; `draftChapterScenes()` per chapter; LOCK/REJECT detection; three-rejection diagnostic; chapter assembly; manuscript assembly; `--chapter` resume
+**WORLD — Political**
+- `## Power Structure` / `## Governing Bodies` / `## Faction Landscape` / `## Political Tensions`
 
-### `internal/cards`
+**WORLD — Technology**
+- `## Technology Level` / `## Key Technologies` / `## Social Impact` / `## Constraints and Limits`
 
-- `types.go` — card type/tier/status constants; `Failure`, `Section`, `Schema` types
-- `schemas.go` — `allSchemas` slice with required `##` headings for every card type; `SchemaFor()` lookup; `RequiredSectionsList()` for AI instructions
-- `builder.go` — `Build()`: reset history → AI drafts card → conversation loop until `LOCK`/`CONFIRM`
-- `validator.go` — `Validate()`: checks `[TBD]`/`[TODO]`/`placeholder` text + presence and non-emptiness of all required `##` sections
-- `versioner.go` — `Lock()` prepends status header; `IsLocked()` detects lock; `ExtractBody()` strips header
+**WORLD — Culture**
+- `## Social Norms` / `## Cultural Values` / `## Class Structure` / `## Language Notes`
 
-### `internal/queue`
+**WORLD — Geography** (one card per named location)
+- `## Physical Description` / `## Climate and Conditions` / `## Strategic Significance` / `## Notable Features`
 
-- `queue.go` — `Queue`/`QueueItem` SPEC-007 §10 schema; `Next()` returns first NOT_STARTED item with all prereqs complete; `MarkComplete()` records locked filename and date; `recalcProgress()` stats
-- `generator.go` — `Generate()` builds the full priority-ordered queue from Phase 2 roster: Trilogy → World cards → Geography(n) → Novel → Characters(FULL) → Factions(FULL) → Threats(FULL) → SKETCH tier → Chapter/Scene cards → CONSTRAINTS (always last)
+**WORLD — Constraints**
+- `## Continuity Rules` / `## Established Facts` / `## Series Constraints`
 
-### `internal/qa`
+**NOVEL**
+- `## Story Summary`
+- `## Act Structure`
+- `## 40-Chapter Map`
+- `## Protagonist Journey`
+- `## Central Thematic Question`
 
-- `qa1.go` — `Phase1To2()` (18 items) and `Phase2To3()` (19 items) phase gate checklists; `Result`, `CheckItem`, `Passed()`, `FailedItems()`, `FormatFailures()`
-- `qa2.go` — `CardCompletion()`: wraps `cards.Validate()` failures + existence/lock checks + card-type-specific items (pillars, psychology, Voice Anchor for CHARACTER; leadership for FACTION; escalation arc for THREAT; chapter map for NOVEL)
-- `qa3.go` — `PreProse()` 9-item pre-prose readiness gate (all FULL tier locked, NOVEL/WORLD-Overview/Constraints locked, queue complete)
-- `qa4.go` — `PostProse()` 10-item per-scene check + `PostProseChapter()` chapter-level check
-- `resolution.go` — `PresentAndChoose()`: shows failures, returns `ResolveRetry`/`ResolveOverride`/`ResolveBlock` + overridden item IDs
-- `log.go` — `Log`: append-only JSON-lines QA log; `AppendResult()` convenience wrapper; `Summary()` pass/fail counts
+**CHARACTER — FULL** (protagonist, primary antagonist, key secondaries)
+- `## Identity`
+- `## Want` / `## Need` / `## Fear` / `## Misbelief` / `## Wound`
+- `## Arc Progression`
+- `## Psychology`
+- `## Voice and Mannerisms`
+- `## Skills and Knowledge`
+- `## Physical Description`
+- `## Hard Limits`
+- `## Relationship Dynamics`
+- `## Active Chapters`
+- `## Voice Anchor`
 
-### `internal/prose`
+**CHARACTER — SKETCH** (minor/background characters)
+- `## Identity` / `## Wound` / `## Misbelief` / `## Archetype Stage` / `## Thematic Role` / `## Estimated Full Appearance`
 
-- `generator.go` — `DraftScene()`: AI conversation with `LOCK`/`REJECT [reason]` detection; `WordCount()` helper
-- `fast_draft.go` — `FastDraftChapter()`: drafts all scenes without pausing, presents assembled chapter for selective revision
-- `assembler.go` — `AssembleChapter()` / `AssembleManuscript()` concatenation; `TransitionCheck()` builds a continuity-check prompt
-- `pattern_log.go` — `PatternLog`: JSON rejection tracker; `ThreeRejectionPattern()` surfaces diagnostic when 3 consecutive rejections occur
+**FACTION — FULL**
+- `## Overview` / `## Leadership` / `## Goals and Methods` / `## Internal Tensions` / `## Relationship to Protagonist` / `## Relationship to Threats`
 
-### `internal/utils`
+**FACTION — SKETCH**
+- `## Overview` / `## Leadership` / `## Goals` / `## Estimated Full Appearance`
 
-- `files.go` — all SPEC-007 §4 naming functions (folder paths + file names); `title()` helper converts "Shadows Awaken" → "Shadows-Awaken"
-- `versions.go` — `ParseVersion()` extracts int from `-v3.md`; `IncrementVersion()` bumps it; `HighestVersion()` picks max from a list
-- `prompts.go` — `Loader`: reads `{name}.txt` from prompts dir; `LoadWithVars()` replaces `{{KEY}}` placeholders
-- `diff.go` — `DiffView()` two-column diff for Trilogy Card updates
+**THREAT — FULL**
+- `## Nature and Scope` / `## Origin` / `## Methods` / `## Escalation Arc` / `## Connection to Antagonist`
 
-### `internal/storage`
+**THREAT — SKETCH**
+- `## Overview` / `## Nature` / `## Estimated Full Appearance`
 
-- `local.go` — `Local`: read/write local sync folder mirroring Box structure; `AbsPath()` for QA log path
-- `sync.go` — `SyncPending`: JSON-lines log of locally-written files that need Box sync; `Add()`/`Clear()`; `harness sync` re-pushes entries
+**CHAPTER**
+- `## Chapter Type`
+- `## Story Circle Beats`
+- `## POV Character`
+- `## Scene Beats`
+- `## Subplot Threads` *(optional)*
 
-### `internal/session`
+**SCENE**
+- `## Chapter Reference` / `## Story Function` / `## Opening Hook` / `## Turn Point` / `## Closing Beat` / `## Characters Present`
 
-`State` persists phase/series/book/bookNum; `Manager` reads/writes `~/.writing-harness/session.json`
+---
 
-### `internal/index`
+## QA Standards (Plain Language)
 
-`Index`/`BookSection` SPEC-007 §11 Series Index; `Render()` → Markdown table; `EnsureBook()` / `AddBookCard()` / `AddSeriesCard()`
+**Card QA (QA-2):** A card passes when every required `##` section exists, is non-empty, and contains no placeholder text (`[TBD]`, `[TODO]`, `[placeholder]`, `[Write content here]`). Card-type-specific checks: CHARACTER needs a Voice Anchor; FACTION needs Leadership; THREAT needs an Escalation Arc; NOVEL needs a Chapter Map.
 
-### `internal/config`
+**Pre-Prose Gate (QA-3):** All FULL-tier cards locked. NOVEL, WORLD-Overview, and WORLD-Constraints cards locked. Card queue 100% complete.
 
-`Config` struct with `AnthropicConfig`, `BoxConfig`, `LocalConfig`, `DefaultsConfig`, `PreferencesConfig`; `Load()` validates and applies defaults
+**Prose QA (QA-4):** Each scene hits 70%+ of word target, has a clear opening hook, a turn point, and a closing beat. No new unintroduced characters. POV and voice consistent throughout. No contradictions with locked canon. No `[FLAG]` markers left in the text.
 
-## File Naming (SPEC-007 §4)
+---
+
+## File Naming
+
+All titles hyphenated: "Shadows Awaken" → `Shadows-Awaken`.
 
 | Card | Pattern |
 |------|---------|
@@ -171,50 +166,123 @@ QA gates block advancement. The writer can retry, override-with-log, or halt.
 | FACTION | `FACTION-{Name}-v{n}.md` |
 | THREAT | `THREAT-{Name}-v{n}.md` |
 | CHAPTER | `CH{nn}-{Book}-v{n}.md` |
-| SCENE | `SCENE-CH{nn}-S{n}-v{n}.md` |
+| SCENE draft | `CH{nn}-{Book}-S{n}-DRAFT-v{n}.md` |
+| Chapter draft | `CH{nn}-{Book}-DRAFT-v{n}.md` |
 | TRILOGY | `TRILOGY-v{n}.md` |
 | QA Log | `QA-LOG-{Book}.md` |
 | Pattern Log | `PATTERN-LOG-{Book}.md` |
+| Index state | `INDEX-STATE-{Series}.json` |
+| Card template | `{base-filename}-template.md` |
 
-All titles are hyphenated: "Shadows Awaken" → "Shadows-Awaken".
-
-## Box Folder Structure (SPEC-007 §3)
+## Box Folder Structure
 
 ```
 {Series}/
   World Bible/
   Trilogy/
   INDEX-{Series}.md
+  INDEX-STATE-{Series}.json
   {Book}/
     Seeds/
     Expansion/
     Cards/
+    CardTemplates/
     Prose/
     QA/
 ```
 
-## Prompt System
+---
 
-`prompts/system/phase{1-4}.txt` — system prompts loaded via `utils.Loader`; support `{{VAR}}` substitution.
+## CLI Reference
 
-`prompts/templates/` — reusable templates: `card_draft.txt`, `gap_resolution.txt`, `qa_failure.txt`, `scene_orient.txt`, `three_rejection.txt`.
+### Phase pipeline (first-pass, run once per book)
+```
+harness new-series      # Box folder tree + Series Index, sets Phase 1
+harness new-book        # Add a second book to an existing series
+harness phase1          # Idea Generation: seed prompt + deepening conversation
+harness phase2          # Snowflake expansion (7 steps) + Card Queue + templates
+harness phase3          # Card Completion: queue-driven, AI drafts each card
+harness phase4          # Prose Generation: scene-by-scene, 40 chapters
+harness phase4 --fast   # Fast-draft mode
+harness phase4 --chapter 12  # Resume at chapter 12
+harness continue        # Resume most recent session
+```
 
-## Testing
+### Utility
+```
+harness status          # Queue progress, next card, QA log summary
+harness sync            # Re-push SYNC-PENDING files to Box
+harness qa-check 2 <file>   # Validate a card file from local sync
+harness qa-check 3          # Run QA-3 pre-prose gate
+```
+
+Config is read from `config.json` in the working directory (see `config.example.json`).
+
+---
+
+## Codebase Reference
+
+### Architecture
+
+The Go CLI manages session state and conversation history. For each turn:
+1. Append user message to `[]BetaMessageParam` history
+2. Build API request: system prompt + history + Box MCP server config
+3. Call Anthropic Beta Messages API — Claude may invoke Box tools mid-turn
+4. Append assistant response to history
+5. Present to writer; repeat
+
+The Go app **never calls Box directly** — Claude does, via MCP tool use.
+
+Box MCP: `internal/box/mcp.go` builds `BetaRequestMCPServerURLDefinitionParam` injected into `BetaMessageNewParams.MCPServers`. Beta header: `AnthropicBetaMCPClient2025_04_04`.
+
+### Phase Flow
 
 ```
-go test ./...                    # run all tests
-go test ./internal/cards/...     # cards package only
-go test ./internal/queue/...     # queue package only
+new-series ──► phase1 ──► phase2 ──► phase3 ──► phase4
+               Seed       Snowflake  Card        Prose
+               lock       expand     queue       draft
+               QA-1       QA-1       QA-2/3      QA-4
 ```
 
-Tests cover: file naming (utils), version parsing (utils), card validation (cards), card locking (cards), queue generation (queue), queue logic (queue), QA-1/2/3 checklists (qa).
+### Key Packages
 
-AI-dependent code (phases, prose, anthropic client) is not unit-tested — test with a live config.
+**`internal/anthropic`** — `Client` wraps SDK; `Send()` manages history + MCP; `ResetHistory()` per card/scene; token budget trims at 90%, warns at 80%.
 
-## Development Notes
+**`internal/phases`** — `adapters.go`: `AIConversation`, `BoxFileWriter`, `LocalFileWriter`, shared interfaces. Phase runners: `phase1.go` (3 entry paths, deepening loop, seed lock), `phase2.go` (7 Snowflake steps, queue generation), `phase3.go` (queue-driven card loop), `phase4.go` (40-chapter loop, fast draft). Mode runners: `idea.go`, `check.go`, `write.go`.
 
-- The Anthropic Go SDK returns `Client` by value from `NewClient()`, not a pointer
+**`internal/cards`** — `types.go`: constants. `schemas.go`: required `##` headings per card type. `builder.go`: `Build()` and `BuildFromTemplate()` conversation loops. `validator.go`: `Validate()` checks placeholders + section presence. `versioner.go`: `Lock()` / `IsLocked()` / `ExtractBody()`. `scaffold.go`: `GenerateScaffold()` / `IsScaffoldOnly()`.
+
+**`internal/queue`** — `Queue`/`QueueItem` schema; `Next()` returns first NOT_STARTED item; `MarkComplete()` records filename + date. `generator.go`: priority order: Trilogy → World → Geography → Novel → Characters(FULL) → Factions → Threats → SKETCH tier → Chapters → CONSTRAINTS.
+
+**`internal/qa`** — `qa1.go`: Phase1→2 (18 items) and Phase2→3 (19 items) gates. `qa2.go`: card completion. `qa3.go`: pre-prose gate + `PreProseDocFromQueue()`. `qa4.go`: per-scene + chapter-level checks. `resolution.go`: `PresentAndChoose()` → Retry/Override/Block. `log.go`: append-only JSON-lines log.
+
+**`internal/prose`** — `generator.go`: `DraftScene()` with LOCK/REJECT detection. `fast_draft.go`: `FastDraftChapter()`. `assembler.go`: chapter + manuscript assembly + transition check. `pattern_log.go`: three-rejection diagnostic.
+
+**`internal/utils`** — `files.go`: all path/filename functions. `versions.go`: `ParseVersion()`, `IncrementVersion()`, `HighestVersion()`. `prompts.go`: `Loader` with `{{VAR}}` substitution. `diff.go`: Trilogy Card two-column diff.
+
+**`internal/storage`** — `local.go`: local sync folder read/write + `AbsPath()`. `sync.go`: SYNC-PENDING log.
+
+**`internal/session`** — `State`: phase/series/book/bookNum/gates. `Manager`: reads/writes `~/.writing-harness/session.json`.
+
+**`internal/index`** — `Index`/`BookSection` Series Index; `Render()` → Markdown; `EnsureBook()` / `AddBookCard()` / `AddSeriesCard()`; `LoadState()` / `SaveState()` JSON round-trip.
+
+**`internal/config`** — `Config` with `AnthropicConfig`, `BoxConfig`, `LocalConfig`, `DefaultsConfig`, `PreferencesConfig`; `Load()` validates and applies defaults.
+
+### Testing
+
+```bash
+go test ./...                    # all tests
+go test ./internal/cards/...     # cards only
+go test ./internal/queue/...     # queue only
+```
+
+Tests cover: file naming, version parsing, card validation, card locking, queue generation, queue logic, QA-1/2/3 checklists. AI-dependent code is not unit-tested — use a live config.
+
+### Development Notes
+
+- Anthropic Go SDK returns `Client` by value from `NewClient()`, not a pointer
 - `BetaMessageParam.Content` is `[]BetaContentBlockParamUnion` with `OfText *BetaTextBlockParam`
 - MCP server config goes in `BetaMessageNewParams.MCPServers` (not `Params.Tools`)
 - `param.NewOpt()` is at `github.com/anthropics/anthropic-sdk-go/packages/param`
-- Model: `claude-sonnet-4-6` (set in config.example.json)
+- Model: `claude-sonnet-4-6` (set in `config.example.json`)
+- `internal/ai/interface.go` — canonical shared `Conversation` interface; all packages import from here, not from each other
