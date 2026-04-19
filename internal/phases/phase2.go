@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/poorlyordered/writers_harness/internal/cards"
 	"github.com/poorlyordered/writers_harness/internal/qa"
 	"github.com/poorlyordered/writers_harness/internal/queue"
 	"github.com/poorlyordered/writers_harness/internal/utils"
@@ -314,6 +315,23 @@ func RunPhase2(ctx context.Context, cfg Phase2Config) error {
 	}
 	fmt.Printf("[HARNESS] Card Queue saved: %s/%s (%d cards)\n",
 		queueFolder, queueFile, len(cardQueue.Queue))
+
+	// Write blank scaffold templates so the writer can pre-fill them before Phase 3.
+	fmt.Printf("\n─── CARD TEMPLATES ──────────────────────────────────────────\n")
+	templateFolder := utils.CardTemplatesFolder(cfg.SeriesTitle, cfg.BookTitle)
+	written := 0
+	for _, item := range cardQueue.Queue {
+		scaffold := cards.GenerateScaffold(item.CardType, item.CardSubtype, item.Name)
+		tplFile := utils.CardTemplateFile(item.Filename)
+		if err := cfg.BoxWriter.Write(templateFolder, tplFile, scaffold); err != nil {
+			fmt.Printf("[HARNESS] Warning: template write failed for %s: %v\n", tplFile, err)
+			continue
+		}
+		_ = cfg.LocalWriter.Write(templateFolder, tplFile, scaffold)
+		written++
+	}
+	fmt.Printf("[HARNESS] %d card templates written to Cards/Templates/\n", written)
+	fmt.Printf("[HARNESS] Fill in the templates before running 'harness phase3'.\n")
 
 	// Run QA-1 Phase 2→3 gate.
 	expState := parseExpansionQAState(expandDoc, queueJSON, cfg.IsStandalone)

@@ -4,44 +4,46 @@
 package index
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"strings"
 	"time"
 )
 
 // Entry represents one card row in the series index.
 type Entry struct {
-	Name        string
-	CardType    string
-	Tier        string // "FULL", "SKETCH", or "" for non-character cards
-	Version     int
-	Status      string
-	LastUpdated string
-	BookTitle   string // empty for series-level cards
+	Name        string `json:"name"`
+	CardType    string `json:"card_type"`
+	Tier        string `json:"tier"`
+	Version     int    `json:"version"`
+	Status      string `json:"status"`
+	LastUpdated string `json:"last_updated"`
+	BookTitle   string `json:"book_title"`
 }
 
 // Index holds the full state of a series index.
 type Index struct {
-	SeriesTitle string
-	LastUpdated string
-	Books       []BookSection
-	SeriesCards []Entry
+	SeriesTitle string        `json:"series_title"`
+	LastUpdated string        `json:"last_updated"`
+	Books       []BookSection `json:"books"`
+	SeriesCards []Entry       `json:"series_cards"`
 }
 
 // BookSection groups per-book entries under a book heading.
 type BookSection struct {
-	BookTitle string
-	BookNum   int
-	Phase     string // "1", "2", "3", "4", "COMPLETE"
-	Progress  string // e.g. "12 of 40 chapters complete" or ""
-	Cards     []Entry
-	Flags     IndexFlags
+	BookTitle string     `json:"book_title"`
+	BookNum   int        `json:"book_num"`
+	Phase     string     `json:"phase"`
+	Progress  string     `json:"progress,omitempty"`
+	Cards     []Entry    `json:"cards"`
+	Flags     IndexFlags `json:"flags"`
 }
 
 // IndexFlags captures outstanding flag counts for a book.
 type IndexFlags struct {
-	NeedsReview  int
-	CardRequired int
+	NeedsReview  int `json:"needs_review"`
+	CardRequired int `json:"card_required"`
 }
 
 // Render produces the full Markdown content of the series index.
@@ -81,6 +83,31 @@ func (idx *Index) Render() string {
 		sb.WriteString("---\n\n")
 	}
 	return sb.String()
+}
+
+// LoadState reads Index state from a JSON file. Returns (nil, nil) if the file doesn't exist.
+func LoadState(path string) (*Index, error) {
+	data, err := os.ReadFile(path)
+	if os.IsNotExist(err) {
+		return nil, nil
+	}
+	if err != nil {
+		return nil, err
+	}
+	var idx Index
+	if err := json.Unmarshal(data, &idx); err != nil {
+		return nil, err
+	}
+	return &idx, nil
+}
+
+// SaveState writes Index state to a JSON file.
+func SaveState(idx *Index, path string) error {
+	data, err := json.MarshalIndent(idx, "", "  ")
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0o644)
 }
 
 // NewEmpty creates a fresh index for a series with no cards yet.

@@ -143,6 +143,37 @@ func CardQueueFile(bookTitle string) string {
 	return "CARD-QUEUE-" + title(bookTitle) + ".json"
 }
 
+func SeriesIndexStateFile(seriesTitle string) string {
+	return "INDEX-STATE-" + title(seriesTitle) + ".json"
+}
+
+func CardTemplatesFolder(seriesTitle, bookTitle string) string {
+	return CardsFolder(seriesTitle, bookTitle) + "/Templates"
+}
+
+// CardTemplateFile converts a versioned queue filename to its template filename.
+// e.g. "CHAR-Jax-Tarkin-v1.md" → "CHAR-Jax-Tarkin-template.md"
+func CardTemplateFile(queueFilename string) string {
+	name := queueFilename
+	if dot := strings.LastIndex(name, "."); dot != -1 {
+		name = name[:dot]
+	}
+	if idx := strings.LastIndex(name, "-v"); idx != -1 {
+		suffix := name[idx+2:]
+		allDigits := len(suffix) > 0
+		for _, c := range suffix {
+			if c < '0' || c > '9' {
+				allDigits = false
+				break
+			}
+		}
+		if allDigits {
+			name = name[:idx]
+		}
+	}
+	return name + "-template.md"
+}
+
 // title converts a human-readable name to the hyphenated title-case format
 // used in Box file and folder names (spaces → hyphens).
 func title(s string) string {

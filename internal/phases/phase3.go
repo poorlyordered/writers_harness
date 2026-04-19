@@ -2,6 +2,7 @@ package phases
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"strings"
 	"time"
@@ -111,9 +112,32 @@ func buildOneCard(ctx context.Context, cfg Phase3Config, systemPrompt string, q 
 	fmt.Println()
 	fmt.Printf("    Source: %s\n    File: %s\n\n", strings.Join(item.SourceSections, ", "), item.Filename)
 
+	// Load writer-supplied template if one exists.
+	templateContent, _ := cfg.LocalReader.Read(
+		utils.CardTemplatesFolder(cfg.SeriesTitle, cfg.BookTitle),
+		utils.CardTemplateFile(item.Filename),
+	)
+	hasTemplate := templateContent != "" && !cards.IsScaffoldOnly(templateContent)
+
 	for {
 		instruction := buildCardInstruction(item)
-		content, err := cards.Build(ctx, cfg.AI, systemPrompt, instruction)
+
+		var content string
+		var err error
+		switch {
+		case hasTemplate:
+			// Validate the writer's template directly — if it passes, lock without Claude.
+			directFailures := cards.Validate(item.CardType, item.CardSubtype, templateContent)
+			if len(directFailures) == 0 {
+				fmt.Printf("[HARNESS] Template passes validation — locking directly without AI draft.\n")
+				content = templateContent
+			} else {
+				fmt.Printf("[HARNESS] Template found — Claude will refine %d gap(s).\n", len(directFailures))
+				content, err = cards.BuildFromTemplate(ctx, cfg.AI, systemPrompt, instruction, templateContent)
+			}
+		default:
+			content, err = cards.Build(ctx, cfg.AI, systemPrompt, instruction)
+		}
 		if err != nil {
 			return fmt.Errorf("building card %q: %w", item.Name, err)
 		}
@@ -182,14 +206,26 @@ func saveIndex(cfg Phase3Config) {
 	if cfg.Idx == nil {
 		return
 	}
-	content := cfg.Idx.Render()
-	idxFile := utils.SeriesIndexFile(cfg.SeriesTitle)
 	idxFolder := utils.SeriesRoot(cfg.SeriesTitle)
-	if err := cfg.BoxWriter.Write(idxFolder, idxFile, content); err != nil {
+
+	// Render and save Markdown index.
+	if err := cfg.BoxWriter.Write(idxFolder, utils.SeriesIndexFile(cfg.SeriesTitle), cfg.Idx.Render()); err != nil {
 		fmt.Printf("[HARNESS] Warning: Series Index Box save failed: %v\n", err)
 	}
-	if err := cfg.LocalWriter.Write(idxFolder, idxFile, content); err != nil {
+	if err := cfg.LocalWriter.Write(idxFolder, utils.SeriesIndexFile(cfg.SeriesTitle), cfg.Idx.Render()); err != nil {
 		fmt.Printf("[HARNESS] Warning: Series Index local save failed: %v\n", err)
+	}
+
+	// Save JSON state so new-book and future phases can load it without parsing Markdown.
+	stateJSON, err := json.Marshal(cfg.Idx)
+	if err == nil {
+		stateFile := utils.SeriesIndexStateFile(cfg.SeriesTitle)
+		if err := cfg.BoxWriter.Write(idxFolder, stateFile, string(stateJSON)); err != nil {
+			fmt.Printf("[HARNESS] Warning: Index state Box save failed: %v\n", err)
+		}
+		if err := cfg.LocalWriter.Write(idxFolder, stateFile, string(stateJSON)); err != nil {
+			fmt.Printf("[HARNESS] Warning: Index state local save failed: %v\n", err)
+		}
 	}
 }
 

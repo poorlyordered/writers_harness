@@ -3,6 +3,7 @@ package cmd
 import (
 	"bufio"
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -15,6 +16,18 @@ import (
 	"github.com/poorlyordered/writers_harness/internal/storage"
 	"github.com/poorlyordered/writers_harness/internal/utils"
 )
+
+// loadIndexState loads the JSON index state from local storage, or returns a
+// fresh empty index if no state file exists yet.
+func loadIndexState(local *storage.Local, seriesTitle string) *index.Index {
+	seriesRoot := utils.SeriesRoot(seriesTitle)
+	stateFile := utils.SeriesIndexStateFile(seriesTitle)
+	statePath := local.AbsPath(seriesRoot, stateFile)
+	if idx, err := index.LoadState(statePath); err == nil && idx != nil {
+		return idx
+	}
+	return index.NewEmpty(seriesTitle)
+}
 
 var newBookCmd = &cobra.Command{
 	Use:   "new-book",
@@ -67,30 +80,25 @@ func runNewBook(ctx context.Context) error {
 	}
 	fmt.Println("[HARNESS] Box folders created.")
 
-	// Load and update the Series Index.
+	// Load existing index state (preserves all card entries from prior phases).
 	local := storage.NewLocal(cfg.Local.SyncFolder)
 	seriesRoot := utils.SeriesRoot(state.SeriesTitle)
-	indexFile := utils.SeriesIndexFile(state.SeriesTitle)
 
-	var idx *index.Index
-	if _, err := local.Read(seriesRoot, indexFile); err == nil {
-		// Existing index found — rebuild with both books preserved.
-		idx = index.NewEmpty(state.SeriesTitle)
-		idx.EnsureBook(state.BookTitle, state.BookNum)
-		idx.EnsureBook(bookTitle, bookNum)
-	} else {
-		idx = index.NewEmpty(state.SeriesTitle)
-		idx.EnsureBook(state.BookTitle, state.BookNum)
-		idx.EnsureBook(bookTitle, bookNum)
-	}
-	indexContent := idx.Render()
+	idx := loadIndexState(local, state.SeriesTitle)
+	_ = idx.EnsureBook(bookTitle, bookNum)
 
 	boxWriter := phases.NewBoxFileWriter(aiClient)
-	if err := boxWriter.Write(seriesRoot, indexFile, indexContent); err != nil {
+	indexFile := utils.SeriesIndexFile(state.SeriesTitle)
+	if err := boxWriter.Write(seriesRoot, indexFile, idx.Render()); err != nil {
 		return fmt.Errorf("updating series index in Box: %w", err)
 	}
-	if err := local.Write(seriesRoot, indexFile, indexContent); err != nil {
+	if err := local.Write(seriesRoot, indexFile, idx.Render()); err != nil {
 		fmt.Printf("[HARNESS] Warning: local index write failed: %v\n", err)
+	}
+	if stateJSON, err := json.MarshalIndent(idx, "", "  "); err == nil {
+		stateFile := utils.SeriesIndexStateFile(state.SeriesTitle)
+		_ = local.Write(seriesRoot, stateFile, string(stateJSON))
+		_ = boxWriter.Write(seriesRoot, stateFile, string(stateJSON))
 	}
 	fmt.Printf("[HARNESS] Series Index updated: %s/%s\n", seriesRoot, indexFile)
 

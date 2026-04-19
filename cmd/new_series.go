@@ -3,6 +3,7 @@ package cmd
 import (
 	"bufio"
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -74,17 +75,26 @@ func runNewSeries(ctx context.Context) error {
 	// Create the Series Index.
 	idx := index.NewEmpty(seriesTitle)
 	_ = idx.EnsureBook(bookTitle, 1)
+	seriesRoot := utils.SeriesRoot(seriesTitle)
 	indexContent := idx.Render()
 	indexFile := utils.SeriesIndexFile(seriesTitle)
 
 	boxWriter := phases.NewBoxFileWriter(aiClient)
-	if err := boxWriter.Write(utils.SeriesRoot(seriesTitle), indexFile, indexContent); err != nil {
+	if err := boxWriter.Write(seriesRoot, indexFile, indexContent); err != nil {
 		return fmt.Errorf("writing series index to Box: %w", err)
 	}
-	if err := localStore.Write(utils.SeriesRoot(seriesTitle), indexFile, indexContent); err != nil {
+	if err := localStore.Write(seriesRoot, indexFile, indexContent); err != nil {
 		fmt.Printf("[HARNESS] Warning: local index write failed: %v\n", err)
 	}
-	fmt.Printf("[HARNESS] Series Index: %s/%s\n", utils.SeriesRoot(seriesTitle), indexFile)
+
+	// Save JSON state so future phases can load and update it without parsing Markdown.
+	if stateJSON, err := json.MarshalIndent(idx, "", "  "); err == nil {
+		stateFile := utils.SeriesIndexStateFile(seriesTitle)
+		_ = localStore.Write(seriesRoot, stateFile, string(stateJSON))
+		_ = boxWriter.Write(seriesRoot, stateFile, string(stateJSON))
+	}
+
+	fmt.Printf("[HARNESS] Series Index: %s/%s\n", seriesRoot, indexFile)
 
 	// Persist session state.
 	state := session.New(session.Phase1, seriesTitle, bookTitle, 1)

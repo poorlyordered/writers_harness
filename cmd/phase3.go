@@ -6,7 +6,6 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/poorlyordered/writers_harness/internal/index"
 	"github.com/poorlyordered/writers_harness/internal/phases"
 	"github.com/poorlyordered/writers_harness/internal/session"
 	"github.com/poorlyordered/writers_harness/internal/storage"
@@ -46,7 +45,8 @@ func runPhase3(ctx context.Context) error {
 		return fmt.Errorf("saving session: %w", err)
 	}
 
-	idx := index.NewEmpty(state.SeriesTitle)
+	// Load existing index state so all prior card entries are preserved.
+	idx := loadIndexState(local, state.SeriesTitle)
 	book := idx.EnsureBook(state.BookTitle, state.BookNum)
 	book.Phase = "3"
 
