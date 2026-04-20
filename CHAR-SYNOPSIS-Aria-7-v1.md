@@ -41,7 +41,7 @@ She has encountered organic life across many civilizations in the centuries sinc
 
 She has been tracking Varr frequency patterns that have been intensifying in the Xanthius sector for years. She monitors Desolation's Edge from a distance — the energy readings carry a resonance signature buried in her construction archive: the profile of a Daybringer bloodline interacting with Stellarium. She has run 847 predictive scenarios for how this unfolds. In 612 of them, the outcome is acceptable. She considers these odds sufficient to act.
 
-She makes contact with Lena's operation and offers her services. She does not disclose the full scope of what she knows. This is not deception. She has learned, over centuries, that organic life does not receive complete information well. She provides what is useful at the threshold. More will become useful later.
+When the team begins to coalesce around Jax — she observes Lena arrive, she sees the mission crystallizing — she decides the threshold has been reached. She approaches Jax directly. Not through channels, not through referral. She presents herself to the person she came to find, with data on Varr technology that makes her case more effectively than any introduction could. She does not disclose the full scope of what she knows. This is not deception. She has learned, over centuries, that organic life does not receive complete information well. She provides what is useful at the threshold. More will become useful later.
 
 ---
 
