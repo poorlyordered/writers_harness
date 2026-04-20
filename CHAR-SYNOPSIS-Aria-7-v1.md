@@ -3,7 +3,7 @@ TYPE: CHARACTER SYNOPSIS
 VERSION: v1
 LOCKED: 2026-04-20
 CHARACTER: Aria-7
-NOTE: 40-chapter structure. Varr-built synthetic intelligence. Ch 12 introduction. Card Active Chapters (Ch 7) to be corrected in CHAR-Aria-7-v2.
+NOTE: 40-chapter structure. Varr-built synthetic intelligence. Ch 12 introduction. See CHAR-Aria-7-v2.md.
 ---
 
 ## Knowledge State (Standing Reference)
