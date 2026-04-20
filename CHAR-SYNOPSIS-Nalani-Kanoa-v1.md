@@ -34,11 +34,11 @@ NOTE: 40-chapter structure — mentor arc; Nalani is not POV, chapters reflect h
 
 ## Pre-Story
 
-Nalani Kanoa is the last living descendant of the Varr civilization. She did not choose this. She was born into it the same way the Varr civilization fell into catastrophe — without consent, without warning, and with no one left to carry the weight except the one who remained.
+Nalani Kanoa is the senior keeper-line descendant of the Varr Dissenters — the community of Varr descendant keepers the mainstream Varr civilization deliberately scattered across multiple planets to fracture their power. She leads Sanctuary Valley, the Dissenter node hidden on Xanthius that holds the most complete archive in the network. Her people have lived in exile for generations. She did not choose this. She was born into it, and she has spent her life making sure the exile was not wasted.
 
 She has spent her life in preparation. Not for herself — she stopped planning for herself before she was thirty. For Jax. For the one the Varr archives said would come, carrying the shard, needing a guide who understood the full history of what Stellarium could do when turned toward destruction rather than creation.
 
-She found the shard. Then she waited. For decades. She is very good at waiting. She has had to be.
+She found the shard signal years ago. Then she waited — leading her community, keeping the archive, monitoring the wider Dissenter network, and watching Drayton's fever accelerate toward Sanctuary Valley. She is very good at waiting. She has had to be.
 
 What she has not been good at: trust. Specifically, the trust that her preparation, her careful tending of Varr knowledge, her long patience — that all of it will hold even when she is not in the room. She knows the history perfectly. She has never been able to trust that knowing it once is enough.
 
@@ -54,7 +54,7 @@ Jax dreams of the flash and the pain and the nothing. Nalani, on the other side 
 *Misbelief active:* She must be present when it starts. Everything depends on this.
 
 ### Ch 2 — Off-page
-The shard hums in response to something external. Nalani is traveling. She has left her hermitage for the first time in four years. She does not find this remarkable. She finds it exactly what she expected.
+The shard hums in response to something external. Nalani is traveling. She has left Sanctuary Valley for the first time in four years — the first time she has left her community and the archive in her deputy's hands. She does not find this remarkable. She finds it exactly what she expected.
 
 ### Ch 3 — Off-page
 Drayton's forces are active in the region. Nalani knows this. His Varr connection is something she has been tracking for years — she knows what he wants and why his timeline is accelerating. This is part of why she is moving faster than planned.

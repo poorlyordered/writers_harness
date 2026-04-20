@@ -9,9 +9,9 @@ PARTS: See -p1, -p2, -p3 in Box
 
 ## Knowledge State (Standing Reference)
 
-**Does NOT know:** That his bloodline is the catastrophe line — the faction the Varr archives name as the cause of the civilization's fall. That Jax is the Daybringer (until late Act 2). That Lena exists or matters to the pattern. The full scope of Stellarium's manipulative nature — he believes he is using it; he does not understand it is using him. Where the Valley is.
+**Does NOT know:** That his bloodline is the catastrophe line — the faction the Varr archives name as the cause of the civilization's fall. That Jax is the Daybringer (until late Act 2). That Lena exists or matters to the pattern. The full scope of Stellarium's manipulative nature — he believes he is using it; he does not understand it is using him. Where Sanctuary Valley is.
 
-**Does know:** His Varr bloodline and what it means — in his version of the history. The Daybringer prophecy, reframed from his faction's perspective as a rival claim, a keeper-line lie used to justify monopolizing Stellarium. That Nalani Kanoa exists and holds the complete archives. That Stellarium responds to his bloodline. That the Valley is somewhere — hidden, protected, the one thing that has escaped him.
+**Does know:** His Varr bloodline and what it means — in his version of the history. The Daybringer prophecy, reframed from his faction's perspective as a rival claim, a keeper-line lie used to justify monopolizing Stellarium. That Nalani Kanoa exists and holds the complete archives. That Stellarium responds to his bloodline. That Sanctuary Valley is somewhere — hidden, protected, the one thing that has escaped him.
 
 **Knows by end of Ch 40:** Nothing he didn't know going in. He is defeated with the misbelief intact. The revelation about his bloodline belongs to Book 2. What the reader knows by Ch 40 is more than he will ever admit to knowing about himself.
 
@@ -37,7 +37,7 @@ He was seventeen when Stellarium found him. He had been in a fight — one of ma
 
 He spent the next decade building backward from that moment. Found fragments of Varr history in places history doesn't usually survive — black markets, private collections, the libraries of people who didn't know what they had. Assembled a worldview from incomplete pieces, each fragment confirming what the Stellarium had already told him: his bloodline was the rightful Varr inheritance. His ancestors were the ones who understood Stellarium's true purpose. The catastrophe came from the other faction — the keepers — who feared what his bloodline could do and sabotaged them rather than concede the argument.
 
-He found Nalani's name in those fragments. Understood that she was the last keeper-line descendant. Understood that she held the complete archives — the knowledge that would unlock Stellarium's full power, that would let him do what his ancestors had been prevented from doing. He has been hunting the Valley ever since. He cannot find it. Nalani is the one variable that has always escaped him, and the failure of that hunt is the one thing that can make him quiet in a way that isn't calm.
+He found Nalani's name in those fragments. Understood that she was the last keeper-line descendant. Understood that she held the complete archives — the knowledge that would unlock Stellarium's full power, that would let him do what his ancestors had been prevented from doing. He has been hunting Sanctuary Valley ever since. He cannot find it. Nalani is the one variable that has always escaped him, and the failure of that hunt is the one thing that can make him quiet in a way that isn't calm.
 
 The warlord empire came because he needed infrastructure, resources, reach. He is genuinely good at it — the charisma, the strategy, the management of men who follow force. But it was always a vehicle. Everything has always been a vehicle. The fever has been driving him since he was seventeen years old, and he has never once questioned whether the direction is right.
 
@@ -58,12 +58,12 @@ Reports from Desolation's Edge: Stellarium readings have shifted. Something in t
 ### Ch 3 — Apparatus Deployed
 His forces move into the outer region. A mining crew disappears. A competitor's operation shuts down. This is not cruelty for its own sake — it is consolidation. He is clearing the space around a Stellarium concentration that has begun to interest him, and he is doing it the way he does everything: methodically, without leaving operational loose ends.
 
-He still does not know about Jax. He knows about the frequency shift. He knows the Valley is not here. He is looking for leverage — something to trade, someone who knows something. The disappeared mining crew was a question he asked the hard way.
+He still does not know about Jax. He knows about the frequency shift. He knows Sanctuary Valley is not here. He is looking for leverage — something to trade, someone who knows something. The disappeared mining crew was a question he asked the hard way.
 
 *Fever reading:* Elevated. Something is happening with Stellarium in this region. His bloodline knows it before his intelligence does.
 
 ### Ch 4 — Off-page
-Nalani reaches Jax. Drayton does not know this yet. He has been hunting Nalani for years without finding her — the Valley's location is the one intelligence failure he has never been able to close. If he knew she had surfaced, he would redirect everything.
+Nalani reaches Jax. Drayton does not know this yet. He has been hunting Nalani for years without finding her — Sanctuary Valley's location is the one intelligence failure he has never been able to close. If he knew she had surfaced, he would redirect everything.
 
 He does not know. He is running operations on three fronts and monitoring the Stellarium frequency out of Desolation's Edge, which continues to do something he cannot explain.
 
@@ -171,7 +171,7 @@ He also learns something Aria-7 noticed: a hint of his own Varr connection in th
 ### Ch 18 — Off-page
 Jax confronts his allies about secrets. Nalani reveals more Varr history. Drayton is running parallel intelligence — his own version of the Varr history, his faction's account, the fragments that confirm what he has always believed.
 
-He has never had the complete picture. Nalani has. This is the fundamental asymmetry he has spent twenty years trying to close. She knows something his fragments don't contain, something that would either vindicate or destroy his worldview. He needs the Valley.
+He has never had the complete picture. Nalani has. This is the fundamental asymmetry he has spent twenty years trying to close. She knows something his fragments don't contain, something that would either vindicate or destroy his worldview. He needs Sanctuary Valley.
 
 *Internal:* She is telling him everything. The longer she talks, the stronger he becomes. I am running out of time to move first.
 
@@ -349,7 +349,7 @@ He is not present for the team's gathering. He is somewhere else — held, injur
 ### Ch 40 — The Seed
 The closing image of his arc is not a scene — it is a fact: the revelation about his bloodline does not come in Book 1. He goes into whatever comes next believing his ancestors were right, believing the catastrophe was the keepers' fault, believing that the Daybringer won this round because of twenty years of keeper-line preparation and not because of anything Jax chose.
 
-The Varr archives Nalani holds contain the truth about his bloodline. He does not have the archives. He does not have the Valley.
+The Varr archives Nalani holds contain the truth about his bloodline. He does not have the archives. He does not have Sanctuary Valley.
 
 He still doesn't know where it is. He will keep looking.
 
@@ -367,7 +367,7 @@ His misbelief — that he is correcting a historical injustice, that his ancesto
 
 The tragedy is not that he was evil. The tragedy is that he was never given the question. Nalani asked Jax the question — "Surviving alone is not the same as living" — and it landed even though Jax deflected it. No one ever asked Drayton anything. He was seventeen and alone and Stellarium arrived like a tide, and he built his identity from what it showed him, and he has been living inside that construction ever since.
 
-The gold fever mechanic is the key: Stellarium does not lie to him. It shows him real things — his bloodline is genuine, his power is real, the connection to the Varr legacy is authentic. What it does not show him is that it is showing him only what will keep him moving toward it. Every confirmation is selective. Every fragment he found was one that his fever recognized and his desperation preserved. The complete picture — the one Nalani holds, the one in the Valley — would destroy his worldview. He has spent twenty years hunting the one thing that would end him.
+The gold fever mechanic is the key: Stellarium does not lie to him. It shows him real things — his bloodline is genuine, his power is real, the connection to the Varr legacy is authentic. What it does not show him is that it is showing him only what will keep him moving toward it. Every confirmation is selective. Every fragment he found was one that his fever recognized and his desperation preserved. The complete picture — the one Nalani holds, the one in Sanctuary Valley — would destroy his worldview. He has spent twenty years hunting the one thing that would end him.
 
 He loses in Ch 38 because he has no equivalent of Jax's Ch 37 move. He cannot release the misbelief and find the paradox underneath, because he chose twenty years ago to foreclose that possibility. He is not less capable than Jax. He is less free.
 
