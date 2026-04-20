@@ -286,3 +286,4 @@ Tests cover: file naming, version parsing, card validation, card locking, queue 
 - `param.NewOpt()` is at `github.com/anthropics/anthropic-sdk-go/packages/param`
 - Model: `claude-sonnet-4-6` (set in `config.example.json`)
 - `internal/ai/interface.go` — canonical shared `Conversation` interface; all packages import from here, not from each other
+- **Stream idle timeout fix:** When writing large file content (synopses, full card drafts), use Bash heredocs in small sections (one act or section at a time) appended sequentially — never generate large content as text output or in a single Write tool call. Box uploads over ~18 KB must be split into parts.
