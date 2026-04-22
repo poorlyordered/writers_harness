@@ -29,7 +29,7 @@ Stood still for a moment. The ambient sounds of the colony filled in around the 
 
 He crossed to the box and opened it.
 
-The shard sat where it always sat, behind the locket and the folded note. He picked it up. Held it flat on his palm the way he always did, waiting for the response he usually got: nothing. The shard sitting inert and cool, gray as river stone in the flat overhead light.
+The shard sat where it always sat, behind the locket and the folded note. He didn't look at the note. He hadn't opened the locket in three months — he'd counted. He picked it up. Held it flat on his palm the way he always did, waiting for the response he usually got: nothing. The shard sitting inert and cool, gray as river stone in the flat overhead light.
 
 The hum was real.
 
@@ -87,7 +87,7 @@ The flash came the way it always came. The pain came the way it always came. And
 
 A room.
 
-Not clearly. Not held. Walls, maybe, and a quality of light that was interior rather than open, and the suggestion of a surface at chest height that might have been a table or a counter or something else entirely. It was there for less than a second. It was gone before any of his processing could reach it. And then the nothing came and the nothing was the same as it always was, and he woke with his heart doing something inconvenient.
+Not clearly. Not held. Walls, maybe, and a light that was warm in a way that had nothing to do with electricity -- amber, gathered, like something burning quietly at a distance -- and a surface at chest height that was level and precise, the edge of it catching the light in a way that implied it had been cut with intention. Cool, he thought, in the fraction before it was gone. Or he thought he thought that. It was there for less than a second. It was gone before any of his processing could reach it. And then the nothing came and the nothing was the same as it always was, and he woke with his heart doing something inconvenient.
 
 He lay still.
 
