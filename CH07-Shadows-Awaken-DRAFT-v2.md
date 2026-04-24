@@ -1,10 +1,10 @@
 STATUS: DRAFT
 TYPE: CHAPTER PROSE
-VERSION: v1
-LOCKED: 2026-04-23
+VERSION: v2
+REVISED: 2026-04-24
 BOOK: Shadows Awaken (Book 1 — The Daybringer Prophecies)
 CHAPTER: 7 — The Call to Adventure
-WORD COUNT: ~3,385
+WORD COUNT: ~3,600
 ---
 
 # Chapter 7 -- The Call to Adventure
@@ -19,23 +19,67 @@ The plateau in the pre-dawn was cold and dark and smelled of stone. He walked so
 
 The terrain changed within an hour of DE's edge.
 
-Not suddenly -- the way geology changed, gradually and then completely. The plateau broke into something less regular: mesa formations cracking open, the survey logic that served him underground becoming unreliable on the surface. He read the formations the way he'd read them for eleven years, looking for the patterns that predicted passable ground, and the patterns didn't hold. What looked like a slope with good footing turned to talus that would take a boot and give nothing back. What looked like impassable drop resolved, at approach, into a ledge system that tracked west. He made the adjustment and continued.
+Not suddenly -- the way geology changed, gradually and then completely. The plateau broke into something less regular: mesa formations cracking open, the survey logic that served him underground becoming unreliable on the surface. He read the formations the way he'd read them for eleven years, looking for the patterns that predicted passable ground.
 
-He lost the route twice before midday.
+He'd been carrying the shard since the Keeper Quarter. Not in the tin box -- in his jacket pocket, because at some point during the preparation for this trip he had moved it without deciding to, the way you did a thing that seemed obvious only after you'd done it. It had been doing what it always did in field conditions: faint warmth, occasional pulse when he moved toward something that interested it. He had stopped logging this, because nothing that couldn't be explained in equipment terms made it into his survey notes.
 
-The first time was at a canyon floor that looked stable and wasn't -- not dramatically unstable, just wrong, the kind of wrong you felt in the soles of your feet before the scanner confirmed it. He backed out and went around. The going-around added forty minutes and brought him to a ridge crossing that wasn't on any map and that the scanner was reading inconsistently, which meant either equipment drift or the environment was doing something the equipment couldn't account for. He checked for drift and found none.
+On the approach into the transition zone, it did something it had not done before.
 
-The second time was at a cliff descent where the obvious line went nowhere. He stood at the edge for five minutes looking at the nothing below and then looked at the face to his left and identified a line that no competent surveyor would have chosen first and descended it. The line went through. He did not examine why it went through when the obvious line didn't. He filed it under the same category as the scanner inconsistency and kept moving.
+Not a pulse, not warmth -- a quality he had no category for. Directional. Not pointing, nothing that precise -- a faint orientation, as if the shard had an opinion about which way he was standing relative to something. He filed it in the category of *unexplained -- possibly relevant* and continued south.
 
-By mid-afternoon the terrain had stopped cooperating in a way that had moved from unusual to systematic. He sat on a flat rock, ate, and reviewed the scanner data the way he reviewed difficult formation reads: setting aside what he expected the data to say and looking at what it actually said. What it actually said was that the approach was correct, that the Stellarium-adjacent resonance was increasing as he moved in this direction, and that the readings that looked wrong were not instrument error. The terrain was genuinely doing something his experience couldn't explain.
+The first thing he noticed that he could not account for was the light.
 
-He filed this in the category of *unexplained -- actively relevant* and continued.
+The sun was where he expected it. The shadows fell the right direction for mid-morning. But there was light on the rock face to his left that did not correspond to any angle he could calculate, a brightness that moved as he moved, that vanished when he turned to look at it directly and reappeared at the periphery when he looked away. He checked the scanner for atmospheric interference. Nominal readings. He noted *visual anomaly, source unclear* and kept walking.
 
-The third difficulty was different from the first two. A stretch of ridge where the path seemed to close in front of him -- not physically, not a wall or a drop, just a progressive narrowing of his confidence in any particular direction. The specific disorientation of not knowing which way was through. He had experienced this underground when survey landmarks were unclear. He had always pushed past it by slowing down and reading more carefully. He slowed down. He read more carefully. Nothing resolved.
+He also heard something.
 
-He stopped walking. He stood in the middle of this stretch of terrain and stopped trying to read it.
+Not sound exactly -- a quality at the lower edge of his hearing, below wind and footfall, something that could have been resonance in the rock formations or could have been something he had no name for. It came and went. He could not triangulate it. The scanner returned nothing in the relevant frequencies. He added *auditory anomaly, unconfirmed* to his mental log and applied the same discipline he applied to difficult survey conditions: note, categorize, continue.
 
-After a moment the way forward became apparent. Not different from what it had been -- the same terrain, the same formations -- but legible in a way it hadn't been when he was actively pressing against it. He walked through without difficulty.
+The first difficulty was a canyon floor that looked stable and wasn't.
+
+He read it from the rim: scanner returning good data, nothing alarming on visual. The shard had that directional quality again -- faint, not a warning exactly, more like a weight in one direction that wasn't his own assessment of the situation. He noted it. He trusted the scanner over an instrument he didn't understand, descended to the floor, and found the instability within twelve meters. The kind of wrong you felt in the soles of your feet before any equipment confirmed it. He backed out and went around. The going-around added forty minutes.
+
+He sat at the top of the next ridge and ate, and thought about the canyon floor. He thought about what his feet had known before the scanner had caught it. And what had preceded his feet, briefly, before he'd overridden it.
+
+He filed the canyon under *anomaly, possibly random* and kept moving.
+
+The pressure started on the descent into the second section of the transition zone.
+
+Not atmospheric pressure -- the scanner was nominal. A quality in the air that he could only describe as weight, as if certain directions had more resistance than others. When he moved with it, the going was easier. When he moved against it, he felt the difference in his legs before he felt it anywhere else. He did not know if this was real in any measurable sense. He knew it was something he was experiencing. Those were not the same thing.
+
+The second difficulty was a cliff descent.
+
+The obvious line was to the right -- good holds, predictable progression, the kind of route a competent surveyor chose without hesitation. He was about to commit to it when the shard had that directional quality again. The faint orientation pointed somewhere other than where he was looking -- not a push away from the right face, just a lean that had nothing to do with his read of the terrain. And the visual light he'd been tracking all morning was stronger on the left face now, not light he could photograph or point to, just a quality that suggested the left face the way early sun suggested warmth before you could feel it.
+
+He looked at the left face. No competent surveyor would have chosen it first: worse holds, an unseen transition point midway, the kind of route you took when you had no better option. He had a better option.
+
+He took the left face.
+
+The transition point opened into a ledge system he couldn't have seen from the top, well-positioned, and he came down in better time than the right face would have given him. He stood at the bottom and looked back up at the route he'd taken and at the route he hadn't.
+
+Eleven years of mine work had given him what other surveyors called an instinct for formation reads. He knew what his instincts felt like: accumulated data expressing itself as a read he couldn't fully source. What he'd just followed was not entirely that. Part of it was something arriving from outside his accumulation, directional in a way his own instincts were not, and part of it was phenomena that had no entry in his equipment logs.
+
+He filed all of it under *unexplained -- actively relevant* and continued.
+
+The third difficulty was different.
+
+He was on a ridge stretch, moving well, and then the way forward became unresolvable. Not impassable -- no wall, no drop -- just a progressive narrowing of his confidence in any particular direction. And the visual anomaly intensified: the light on the formations ahead was wrong, too bright in the wrong places, shadows that didn't match anything he was looking at. Patches of dark that seemed to absorb the light around them rather than simply lacking it. When he stopped to fix a landmark it shifted. He moved toward it and it was not where it had been.
+
+He slowed down. He read more carefully. He pressed harder, applied every technique he knew for uncertain terrain, and the uncertainty did not decrease. The auditory quality was stronger here -- not louder, just more present, something he could almost resolve into meaning if he concentrated, and couldn't when he tried.
+
+The shard went quiet.
+
+The faint warmth, the directionality that had been background-present since morning -- gone. He noticed its absence the way you noticed a sound when it stopped. He stood very still. Every instinct said keep moving: the light is changing, you have a destination, forward is always better than stopped.
+
+He stood still.
+
+The visual phenomena continued around him, the wrong light and the heavy shadows and the landmark that was not where he had seen it. He let it continue. He did not try to account for it or chase it or apply any framework he had. He waited.
+
+He waited long enough to count it.
+
+The shard gave the faintest quality he'd felt all day -- not toward anything obvious, not with force. Just: this direction is not wrong. And something in the air -- the pressure, the weight he'd been walking against and with all afternoon -- eased, slightly, in the same direction.
+
+He took it. The terrain opened.
 
 He did not think about what had just happened. He noted it in the same category as everything else he'd noted this afternoon and kept moving, because the light was changing and the resonance reading was the strongest it had ever been and something in the air was different from the mineral-haze of the plateau.
 
@@ -51,9 +95,7 @@ He stood at the entrance for a moment with the scanner reading things it had nev
 
 The interior was larger than the approach suggested. He'd made the estimate coming down: the depression's visible width, the geometry of the descending terrain, the expected interior dimensions. The actual interior was bigger. Not dramatically -- just enough that a careful observer would notice the discrepancy and not have an explanation for it. He was a careful observer. He noticed. He had no explanation.
 
-The Celestial Shrine was visible from where he stood.
-
-Low and old, built into the ridge wall at the far end of the valley, and his first impression was geological feature. His second impression, a fraction of a second later, was that geological features did not have the specific alignment of opening he was looking at -- the precision of a threshold cut to let morning light through at a particular angle, at a particular hour. It was ancient. It had been here long enough to grow into its setting and for the setting to grow into it. He looked at it for a moment and then looked away because he wasn't going to stand here cataloguing architecture when there was someone waiting.
+At the far end of the valley, built into the ridge wall -- or placed there by something that had treated the ridge wall as raw material -- was a structure. Low and old. His first impression was geological feature. His second impression, a fraction of a second later, was that geological features did not have the specific alignment of opening he was looking at -- the precision of a threshold cut to let morning light through at a particular angle, at a particular hour. It was ancient. It had been here long enough to grow into its setting and for the setting to grow into it. He looked at it for a moment and then looked away because he wasn't going to stand here cataloguing architecture when there was someone waiting.
 
 Nalani was in the valley. He saw her before she moved -- she was standing near a formation at the valley's edge, in the shade, the white of her hair the thing his eye found first. Small, unhurried, specific. Not the projection, which had always had the quality of a signal received at the far edge of its range. This was a person with weight and posture and the particular tiredness of someone who had been standing in shade waiting for a specific thing to happen.
 
@@ -79,7 +121,7 @@ The shard in his pocket was warm. Not the pulse of a projection -- warm in a way
 
 "How long have you been waiting?"
 
-"For the Daybringer to arrive? Since I was a girl." She turned and began walking toward the shrine, unhurried, the specific movement of someone who had made this walk many times. "For you specifically? Since the first time the shard responded to the mine formation and you wrote it in your survey log and didn't tell anyone." She paused without turning. "You logged it as *mineral behavior anomaly, origin unclear.* I know because the shard's response registers in the archive."
+"For the Daybringer to arrive? Since I was a girl." She turned and began walking toward the structure at the far wall, unhurried. "The Celestial Shrine," she said, as she walked. "That is what we call it. The Varr named it first. We kept the name." Then, without pause: "For you specifically? Since the first time the shard responded to the mine formation and you wrote it in your survey log and didn't tell anyone." She paused without turning. "You logged it as *mineral behavior anomaly, origin unclear.* I know because the shard's response registers in the archive."
 
 He followed her, because asking the follow-up question while standing still felt like the wrong way to do it, and because the shrine was ahead of them.
 
@@ -103,7 +145,7 @@ She sat. He remained standing.
 
 "The Varr," he said.
 
-"The Varr were an ancient civilization. Older than any current galactic record acknowledges. They mastered Stellarium not as an ore -- they understood it as an interface. A communication and amplification system built into this planet's geology by architects who were here before them. The Caeli Architects. What the mining companies are grinding into processing powder is the terminal layer of a system that was engineered across an entire planet with a specific function."
+"The Varr were an ancient civilization. Older than any current galactic record acknowledges. They mastered Stellarium not as an ore -- they understood it as an interface. A construct built into this planet's geology by architects who were here before them -- the Caeli Architects -- engineered with a specific function, and something more than that function across the millennia it has operated. Systems of that age and reach do not remain only what they were designed to be." She paused. "What the mining companies are grinding into processing powder is the terminal layer of something that was engineered across an entire planet. They do not know what they are touching."
 
 He said nothing. He was listening.
 
