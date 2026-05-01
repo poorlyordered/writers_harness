@@ -82,11 +82,11 @@ Probably she wasn't even aware she'd done it.
 
 Jax sat somewhere between them. He said less than Toby and more than Mira and this turned out to be the natural register of the thing they were becoming without yet being ready to name it.
 
-He checked the tin box once, the way he always checked it. The shard. The scrap of fabric. The locket.
+He checked the tin box once, the way he always checked it. The shard. The scrap of fabric. Two items that didn't add up to an identity no matter how many times he counted them.
 
-He opened it further than usual. He didn't know why. Inside the lid, barely legible where the hinge met the metal, was a small mark he had never been able to make out clearly — not quite a letter, not quite a number, worn to the threshold of meaning by eleven years of handling. He had looked at it before. Today he looked at it longer, as if it might resolve into something if he gave it enough time.
+The locket was where it always was — at his collar, against his chest. His hand went to it without deciding to. His thumb found the clasp and stopped there. On the face of it, barely legible, was a mark he had never been able to make out clearly — not quite a letter, not quite a number, worn to the threshold of meaning by eleven years of handling. He had looked at it before without opening it. He looked at it now the same way. It didn't resolve.
 
-It didn't. He closed the box.
+He let it go.
 
 The shard in his inside pocket was oriented. Not pulling — Stellarium didn't pull him the way it apparently pulled Drayton, fever-hot and consuming. It was more like a compass finding north: quiet acknowledgment that the direction they were moving was the right direction. Warmer now than it had been this morning, whatever it had drawn from him restored in some incremental way. He had been moving away from DE for six hours and the signal had not once produced doubt.
 
