@@ -98,7 +98,7 @@ Jax looked at him. Quill was looking at the table. He had said the thing with th
 
 "Yes," Jax said. It was simply true.
 
-Aria-7: "I will integrate this with the resonance data from the intercept. If his interface is active and unguided, and Jax's is increasingly trained and guided, the interaction between them at close range may produce effects beyond what we observed in Ch 17's engagement. I am modeling this now."
+Aria-7: "I will integrate this with the resonance data from the intercept. If his interface is active and unguided, and Jax's is increasingly trained and guided, the interaction between them at close range may produce effects beyond what we observed in the debris field engagement. I am modeling this now."
 
 "Continue," Jax said.
 
