@@ -20,7 +20,7 @@ The boundary — the point where Sanctuary Valley's concealment architecture gav
 
 He had a moment before the final approach vector.
 
-Bringing six people through this boundary was irreversible in a specific way: they would all know. Not just that Sanctuary Valley existed — the team had known that since Ch 12 — but exactly where it was. The specific vectors, the concealment architecture's structure visible in the approach, the physical character of the location. This was information the Dissenter community had protected for centuries, and he was about to give it to five people whose trustworthiness he had calibrated across six weeks of transit and crisis. Calibrated well — he believed in that calibration — but it was still a six-week calibration against a centuries-long secret.
+Bringing six people through this boundary was irreversible in a specific way: they would all know. Not just that Sanctuary Valley existed — the team had known that since the rendezvous — but exactly where it was. The specific vectors, the concealment architecture's structure visible in the approach, the physical character of the location. This was information the Dissenter community had protected for centuries, and he was about to give it to five people whose trustworthiness he had calibrated across six weeks of transit and crisis. Calibrated well — he believed in that calibration — but it was still a six-week calibration against a centuries-long secret.
 
 "We cross here," he said. "What we know after this, we carry."
 
@@ -36,7 +36,7 @@ She looked at the team. She looked at Jax.
 
 ## Scene 2 — Forward
 
-He stood on the ground of Sanctuary Valley for the first time since Ch 7's solitary arrival and felt the shard do something unexpected.
+He stood on the ground of Sanctuary Valley for the first time since his solitary first arrival and felt the shard do something unexpected.
 
 Not surge — nothing dramatic. A settling. Like a compass that has been approximating north for a long time and has finally found it: the specific quiet of something that has been working at orientation and can now simply be oriented. The warmth was steady and complete and not asking anything of him for the moment.
 
@@ -50,7 +50,7 @@ He was looking at the valley — the specific quality of a place that has been k
 
 *Surviving alone is not the same as living.*
 
-He hadn't summoned the line. It arrived. In Ch 8 it had landed as an accurate observation that cost him something to receive — the cost of an assessment that was correct and required adjustment. Here it arrived in a different register: not as something to be evaluated but as something already completed. He was standing in the Valley with five people he had chosen, and three months of crisis and trust behind him, and the nothing at the center of things was not quite as nothing as it had been when she first said the words.
+He hadn't summoned the line. It arrived. At the Shrine it had landed as an accurate observation that cost him something to receive — the cost of an assessment that was correct and required adjustment. Here it arrived in a different register: not as something to be evaluated but as something already completed. He was standing in the Valley with five people he had chosen, and three months of crisis and trust behind him, and the nothing at the center of things was not quite as nothing as it had been when she first said the words.
 
 He did not tell her this. She probably already knew.
 
@@ -58,7 +58,7 @@ He did not tell her this. She probably already knew.
 
 She looked at him with the quality of someone who has watched a person travel a very long distance and is marking the arrival without ceremony. "Tomorrow," she said. "Tonight, rest. All of you."
 
-He started to object and stopped. The impulse to move directly to the next practical thing was present and familiar. He looked at the team — actually looked, the way he had looked at them in Ch 17's corridor with the fact he hadn't named. Three months of sustained operational tempo. Mira's perimeter check was already done; she was standing at rest now in the way she never quite stood at rest, the watching-quality different from transit-watching. Quill had made someone laugh — the Dissenter technical person — which was unexpected enough to register. Toby was talking to Nalani's people with the easy warmth he brought to all human contact, apparently without effort.
+He started to object and stopped. The impulse to move directly to the next practical thing was present and familiar. He looked at the team — actually looked, the way he had looked at them in the corridor after the intercept with the fact he hadn't named. Three months of sustained operational tempo. Mira's perimeter check was already done; she was standing at rest now in the way she never quite stood at rest, the watching-quality different from transit-watching. Quill had made someone laugh — the Dissenter technical person — which was unexpected enough to register. Toby was talking to Nalani's people with the easy warmth he brought to all human contact, apparently without effort.
 
 "Tomorrow," he agreed.
 
@@ -70,7 +70,7 @@ He was crossing toward the communal structure Nalani's people had prepared for t
 
 He stopped.
 
-She was looking at him with the expression he did not have a category for — the one from the Ch 12 meeting room, from the Ch 13 conversation's most loaded moment, from Ch 19 when he made the commitment and her device went still. But it was larger now. More present. She was not managing it with the usual precision; the Valley's specific gravity had done something to the architecture of her control, and what was on her face was more than the situation required and was specifically about him.
+She was looking at him with the expression he did not have a category for — the one from the rendezvous room when she had first come through the wrong door and looked at his collar and then away; from the night in the common space when she had gotten close to the thing she wasn't going to say; from an hour ago when he had made the commitment and her device had gone still. But it was larger now. More present. She was not managing it with the usual precision; the Valley's specific gravity had done something to the architecture of her control, and what was on her face was more than the situation required and was specifically about him.
 
 He held her gaze. He did not look away.
 
@@ -78,7 +78,7 @@ He was reading her the way he read terrain — the way he read geological format
 
 He did not know what it was. He knew that it was there. The column of unfiled things had been building for three months and this was its largest single entry, and he still could not read it, and the absence of a reading was beginning to feel like a reading of a different kind.
 
-Neither of them said anything. The moment lasted exactly as long as it needed to last, which was slightly longer than either of them had planned for. Then she looked away — not the managed redirect of the Ch 12 meeting room or the Ch 13 conversation, but something less controlled, something that required visible effort — and he watched her do it and filed that too.
+Neither of them said anything. The moment lasted exactly as long as it needed to last, which was slightly longer than either of them had planned for. Then she looked away — not the managed redirect she had used at the rendezvous or in the common space, but something less controlled, something that required visible effort — and he watched her do it and filed that too.
 
 He turned and continued toward the structure.
 

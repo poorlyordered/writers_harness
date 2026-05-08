@@ -52,7 +52,7 @@ Toby had found something useful: a debris field from an old extraction operation
 
 The first contact came through the debris field at the ship's stern — a Stellarium-adjacent energy pulse that hit the rear shielding and made the hull ring like struck metal. Aria-7, immediately: "That frequency. Filing it. The signature has a pattern I have seen before but not in this context. Continue."
 
-Jax moved to the port airlock — the angle that gave him the best direct line to two of the three ships if he could project through the gap in the debris field. His working theory from Ch 16: use the geometry, aim at a structure, let the deflection do the work. There were structures in the debris field. He had eleven years of knowing what happened when force met rock of various densities.
+Jax moved to the port airlock — the angle that gave him the best direct line to two of the three ships if he could project through the gap in the debris field. His working theory from the dock incursion: use the geometry, aim at a structure, let the deflection do the work. There were structures in the debris field. He had eleven years of knowing what happened when force met rock of various densities.
 
 He set the intention. The shard came up.
 

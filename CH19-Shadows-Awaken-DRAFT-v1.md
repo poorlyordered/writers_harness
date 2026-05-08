@@ -12,7 +12,7 @@ BOOK: Shadows Awaken
 
 She had been building toward this for a long time.
 
-He had known it the way he knew things about terrain before he could articulate the knowing — a sense of structure beneath the surface, something large that the conversations so far had been orbiting rather than approaching directly. The Ch 7 history at the Shrine. The training. The incremental disclosures through the comms. All of it had been contextual preparation for a core she had been deciding how to deliver.
+He had known it the way he knew things about terrain before he could articulate the knowing — a sense of structure beneath the surface, something large that the conversations so far had been orbiting rather than approaching directly. The history at the Shrine. The training. The incremental disclosures through the comms. All of it had been contextual preparation for a core she had been deciding how to deliver.
 
 She decided, apparently, now.
 
@@ -60,7 +60,7 @@ He turned this over once and put it down. He was not going to decide based on se
 
 He looked at the table. The route map. Six legs to the Valley from their current position.
 
-He thought about Ch 17. Three ships that had chosen to leave because the math didn't favor them continuing — which meant they were recalculating and would return with better math. He thought about Toby taking them into the debris field without being asked. Quill interrupting the coordination channel in four minutes. Mira at the maintenance access. Aria-7 on comms the entire time. Lena somewhere in the forward section with the device in her hand and the thing she hadn't said yet.
+He thought about the debris field intercept — three ships that had chosen to leave because the math didn't favor them continuing, which meant they were recalculating and would return with better math. He thought about Toby taking them into the debris field without being asked. Quill interrupting the coordination channel in four minutes. Mira at the maintenance access. Aria-7 on comms the entire time. Lena somewhere in the forward section with the device in her hand and the thing she hadn't said yet.
 
 He thought about Drayton running for twenty years on the fever's drive toward something he could feel and couldn't name, because nobody had been there when it mattered to show him what it actually was.
 

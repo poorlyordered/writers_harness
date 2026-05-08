@@ -12,7 +12,7 @@ BOOK: Shadows Awaken
 
 The ship's common space was empty when Lena came through, and then it wasn't.
 
-She had the small diagnostic device in her hand — the one he'd seen her turn between her fingers during the Ch 13 conversation — and she was reviewing something on it with the quality of someone who had come to this space for quiet and found it already occupied. She paused in the doorway. A fraction of a second, not quite deciding.
+She had the small diagnostic device in her hand — the one he'd seen her turn between her fingers during their conversation in the common space — and she was reviewing something on it with the quality of someone who had come to this space for quiet and found it already occupied. She paused in the doorway. A fraction of a second, not quite deciding.
 
 She came in.
 
@@ -48,7 +48,7 @@ She looked at him. The monitoring quality in her eyes was running close to the s
 
 He waited. He had learned in eleven years of extraction work that the moment when the thing you're trying to reach is closest is also the moment when forcing it produces the worst outcome. He waited the way he waited in a shaft showing signs of yield.
 
-Something closed in her. He could see it happen — the same process as the Ch 13 conversation, the careful redistribution of weight, the calibration that required visible effort and produced a surface of level that was the product of the effort, not its absence. She looked at the device.
+Something closed in her. He could see it happen — the same process as in the common space conversation, the careful redistribution of weight, the calibration that required visible effort and produced a surface of level that was the product of the effort, not its absence. She looked at the device.
 
 "It's relevant," she said. "I'll tell you more when I've sorted out what the most useful framing is." Level voice. The production was very well made.
 
@@ -56,7 +56,7 @@ He let it be. Pressing would not produce the crossing — it would produce a clo
 
 She looked at the route map. "The Veth corridor — there's a Stellarium concentration I've been wanting to flag. Relevant to the calibration work when we arrive." Back to the research register. Clean re-entry.
 
-They talked about the Veth corridor. He filed the almost in the same column as the locket reaction from Ch 12, the hesitations from Ch 13 — the growing record of specific things she was managing around him that were about him, not about operational caution.
+They talked about the Veth corridor. He filed the almost in the same column as the locket reaction at the rendezvous — when she had first come through the other door and looked at his collar and then looked away — the hesitations in the common space conversation. The growing record of specific things she was managing around him that were about him, not about operational caution.
 
 His read, provisional: she knew something from the accident that connected to his lost past. Something specific. She was a materials scientist who had worked Stellarium before joining this mission. Whatever went wrong had consequences she was still carrying. He had some of those consequences in his inside pocket, which was probably why she'd looked at the locket the way she had.
 
@@ -66,13 +66,13 @@ He was approximately right about the shape of it. He was wrong about what it was
 
 ## Scene 2 — Drayton's Varr Connection
 
-Nalani's communication came through late in the ship's cycle, the quarter-second lag that had become the texture of her voice in transit. She had been waiting for the Ch 17 engagement's data before disclosing this, she said — she needed to know how Drayton's forces were operating before she could contextualize what she was about to say.
+Nalani's communication came through late in the ship's cycle, the quarter-second lag that had become the texture of her voice in transit. She had been waiting for the debris field intercept's data before disclosing this, she said — she needed to know how Drayton's forces were operating before she could contextualize what she was about to say.
 
 The team gathered. Nalani said: "Cassius Drayton carries Varr bloodline. Catastrophe variant."
 
 The silence that followed was the kind produced by information that the room has been half-expecting and still isn't ready for.
 
-Aria-7, almost immediately: "That explains the architectural resonance. The pattern I filed from Ch 17's engagement — it is consistent with an active but unguided Varr bloodline interface. Uncontrolled Stellarium fever in someone who has had it for approximately—" A pause. "Fifteen to twenty years, based on the signature's density."
+Aria-7, almost immediately: "That explains the architectural resonance. The pattern I filed from the debris field engagement — it is consistent with an active but unguided Varr bloodline interface. Uncontrolled Stellarium fever in someone who has had it for approximately—" A pause. "Fifteen to twenty years, based on the signature's density."
 
 "Since he started building the operation," Quill said. Flat, like a calculation arriving. "He's not hunting Stellarium. He's hunting whatever Stellarium promised him." He looked at the table rather than at anyone specific. "He just doesn't know what that is, because he doesn't have the framework and he doesn't have a guide."
 
@@ -98,7 +98,7 @@ Jax looked at him. Quill was looking at the table. He had said the thing with th
 
 "Yes," Jax said. It was simply true.
 
-Aria-7: "I will integrate this with the Ch 17 resonance data. If his interface is active and unguided, and Jax's is increasingly trained and guided, the interaction between them at close range may produce effects beyond what we observed in Ch 17's engagement. I am modeling this now."
+Aria-7: "I will integrate this with the resonance data from the intercept. If his interface is active and unguided, and Jax's is increasingly trained and guided, the interaction between them at close range may produce effects beyond what we observed in Ch 17's engagement. I am modeling this now."
 
 "Continue," Jax said.
 
@@ -114,7 +114,7 @@ He looked at it. Added: *Lena knows something about the accident. About the star
 
 He put the journal away.
 
-He did not connect the two entries. They were in different columns — different problems, different shapes of urgency, different timelines. One strategic. One something else that did not have a category yet, which was a familiar condition. The column of unfiled things had been growing since Ch 12 and it was growing faster, and he had learned on DE that columns like this either resolved on their own schedule or became the problem.
+He did not connect the two entries. They were in different columns — different problems, different shapes of urgency, different timelines. One strategic. One something else that did not have a category yet, which was a familiar condition. The column of unfiled things had been growing since the rendezvous and it was growing faster, and he had learned on DE that columns like this either resolved on their own schedule or became the problem.
 
 He was fairly certain this one was going to become the problem.
 
