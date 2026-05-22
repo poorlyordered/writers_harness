@@ -8,7 +8,7 @@ BOOK: Shadows Awaken
 
 # Chapter 32
 
-## Beat 1 — The Configuration
+## Beat 1: The Configuration
 
 The team that assembled for the accelerated timeline briefing was not the team that had arrived at the Valley.
 
@@ -30,7 +30,7 @@ They dispersed to their tasks, the clean efficiency of a team that has its work 
 
 ---
 
-## Beat 2 — Toby's Resolution
+## Beat 2: Toby's Resolution
 
 Toby found him at the equipment room door an hour later.
 
@@ -60,7 +60,7 @@ Jax stood at the equipment room door and thought about the wound that was not re
 
 ---
 
-## Beat 3 — Mira's Beat
+## Beat 3: Mira's Beat
 
 He saw the thing with Mira in the late afternoon, at the edge of the research section.
 
@@ -84,7 +84,7 @@ He noted it and did not say anything about it, which was the correct response, a
 
 ---
 
-## Beat 4 — Quill's Right Moment
+## Beat 4: Quill's Right Moment
 
 Quill's right moment arrived at the end of the day's second briefing, which was smaller: just him and Jax and the revised timeline parameters.
 
@@ -114,7 +114,7 @@ Quill received this with the slight discomfort of someone who is not sure how to
 
 ---
 
-## Beat 5 — The Team Chosen
+## Beat 5: The Team Chosen
 
 He stood at the archive's entrance at the end of the working day and looked at what he had.
 
