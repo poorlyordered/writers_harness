@@ -8,7 +8,7 @@ BOOK: Shadows Awaken
 
 # Chapter 28
 
-## Beat 1 — She Chooses the Moment
+## Beat 1: She Chooses the Moment
 
 Evening. The archive settled into its night-quiet, the Valley beyond the narrow windows a darkness that held rather than pressed. He was at the tactical grid, not looking at it, eyes on the display and attention elsewhere, running back through the filed column the way he had run it the last two nights.
 
@@ -40,7 +40,7 @@ She began.
 
 ---
 
-## Beat 2 — Stellarion Prime
+## Beat 2: Stellarion Prime
 
 "Eleven years ago," she said, "I ran an experiment on Stellarion Prime that I believed was original. I had been working on the hypothesis for four years. The Varr materials indicated that Stellarium could be induced to interact more directly with bloodline-adjacent organic systems through a specific energy application method. I designed the configuration from first principles: the energy application, the interface protocol, the material geometry. I believed I was the first. There was nothing in the existing record to indicate otherwise."
 
@@ -54,7 +54,7 @@ She stopped. The archive was quiet in the way it was quiet when it was being use
 
 He had filed this: the record she had been reading before the episode, the specific quality of her stillness when she set it down. He had had the shape without the content. He had the content now.
 
-"What I caused—" She stopped. Began again. "The failure mode released something. Not from the configuration, which was destroyed. From me. Something that had been latent, that the accident activated. I had been carrying it since I was seventeen without knowing what it was. The accident told me what it was." Her voice did not change. "I'm not going to name it now. That's not the part that requires saying."
+"What I caused." She stopped. Began again. "The failure mode released something. Not from the configuration, which was destroyed. From me. Something that had been latent, that the accident activated. I had been carrying it since I was seventeen without knowing what it was. The accident told me what it was." Her voice did not change. "I'm not going to name it now. That's not the part that requires saying."
 
 He looked at her. He did not speak.
 
@@ -62,7 +62,7 @@ He looked at her. He did not speak.
 
 ---
 
-## Beat 3 — The Search
+## Beat 3: The Search
 
 "The episode left traces," she said. "Not in me. Or not only in me. The energy field, at the scale it reached before containment failed, interacted with everything in the room. The Stellarium in the configuration, the materials in the environment, the people present." She was looking at a point past his shoulder, speaking from memory and staying close to the fact because the fact was the only thing she trusted. "Stellarium at threshold engagement, uncontrolled expansion, doesn't only burn. It marks. It leaves a signature in anything susceptible to the frequency."
 
@@ -86,7 +86,7 @@ The thought finished forming. He heard it arrive with the specific quality of so
 
 ---
 
-## Beat 4 — The Locket
+## Beat 4: The Locket
 
 She held his gaze without looking away. Then she said: "There's one more thing."
 
@@ -100,7 +100,7 @@ Something in him went very quiet.
 
 He did not speak.
 
-"I have been looking at it since the first day. Since the rendezvous, when you came through the wrong door and it was at your collar, and I—" She stopped. She drew a breath, the one she had promised herself before she walked across the archive. "The locket was my mother's. She wore it for twenty years. She carried a portrait in it: a face she wanted near her. The face was mine."
+"I have been looking at it since the first day. Since the rendezvous, when you came through the wrong door and it was at your collar, and I..." She stopped. She drew a breath, the one she had promised herself before she walked across the archive. "The locket was my mother's. She wore it for twenty years. She carried a portrait in it: a face she wanted near her. The face was mine."
 
 He looked at her.
 
@@ -118,7 +118,7 @@ She waited.
 
 ---
 
-## Beat 5 — The Silence
+## Beat 5: The Silence
 
 He did not respond.
 

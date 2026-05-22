@@ -8,7 +8,7 @@ BOOK: Shadows Awaken
 
 # Chapter 31
 
-## Beat 1 — He Gets Up
+## Beat 1: He Gets Up
 
 He did not decide to stand. He stood.
 
@@ -32,7 +32,7 @@ He walked across it.
 
 ---
 
-## Beat 2 — The Work
+## Beat 2: The Work
 
 The tactical grid had not changed overnight.
 
@@ -48,7 +48,7 @@ Quill came from the equipment room with the expression of someone who has been w
 
 Jax looked at the grid. "What does Nalani's concealment architecture handle at location-specific scale."
 
-"She's running it at Valley-level, not point-level. If they deploy ground-based readers inside the quadrant, some of the inner-ring concealment breaks down." Quill looked at him. "We've been planning for this. The deep archive access protocol — the Varr materials Lena's been working through. If we can accelerate the extraction timeline—"
+"She's running it at Valley-level, not point-level. If they deploy ground-based readers inside the quadrant, some of the inner-ring concealment breaks down." Quill looked at him. "We've been planning for this. The deep archive access protocol, the Varr materials Lena's been working through. If we can accelerate the extraction timeline..."
 
 "How much has she found."
 
@@ -62,7 +62,7 @@ He was at the grid now.
 
 ---
 
-## Beat 3 — The Team Reads It
+## Beat 3: The Team Reads It
 
 Mira came in at midday with the perimeter report and she looked at him once.
 
@@ -96,7 +96,7 @@ She received it without elaboration and returned to her station.
 
 ---
 
-## Beat 4 — Lena
+## Beat 4: Lena
 
 He found her in the research section at the archive table.
 
@@ -126,7 +126,7 @@ He stayed for another moment. She turned back to the Varr materials. He watched 
 
 ---
 
-## Beat 5 — The Compass
+## Beat 5: The Compass
 
 He stood at the tactical grid in the late afternoon and he looked at the Valley.
 

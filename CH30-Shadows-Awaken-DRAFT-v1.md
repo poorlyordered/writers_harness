@@ -8,13 +8,13 @@ BOOK: Shadows Awaken
 
 # Chapter 30
 
-## Beat 1 — She Comes
+## Beat 1: She Comes
 
 He was still on the ship when she found him.
 
 He had not moved from the low-ceilinged space since before dawn. He had watched the light arrive through the hull's ventilation aperture: the specific grey before color returns, then the color, then the Valley's morning sounds beginning their inventory. He had watched all of this and had not stood up.
 
-He heard her on the gangway. He did not announce that he was there. She knew where he was — she had known, he understood, the way she knew things about him that he had not told her, the pattern-reading that was her version of the same skill he had and had spent months using on her. She came down the gangway with the quality of someone who knows where they are going and does not need to confirm it.
+He heard her on the gangway. He did not announce that he was there. She knew where he was, she had known, he understood, the way she knew things about him that he had not told her, the pattern-reading that was her version of the same skill he had and had spent months using on her. She came down the gangway with the quality of someone who knows where they are going and does not need to confirm it.
 
 She came to the low space. She looked at him. He looked at her.
 
@@ -34,7 +34,7 @@ He had nothing to offer her. He was aware of this. He had nothing to offer anyon
 
 ---
 
-## Beat 2 — What the Air Was
+## Beat 2: What the Air Was
 
 He had thought, in the hours since the confession, about what she had been carrying.
 
@@ -58,7 +58,7 @@ Then she said the thing she had come to say.
 
 ---
 
-## Beat 3 — The Ask
+## Beat 3: The Ask
 
 "I'm not going to ask you to forgive me."
 
@@ -92,13 +92,13 @@ He was still at the bottom.
 
 ---
 
-## Beat 4 — What Was Left
+## Beat 4: What Was Left
 
 He sat with it for a long time.
 
 The archive would be opening its work day. He could hear, distantly, the team beginning its morning: Quill's equipment powering up, Mira's perimeter check, the specific rhythm of people who have learned each other's morning quality and move around it without comment. Aria-7 was likely already at her station. The Valley was being operational. He was not being operational.
 
-He had not been operational since the archive last night. He understood that this was visible — he was not in his post, he had not appeared for the morning's first tasks, and the team would read it. Mira would read it most clearly, and most accurately, and would do the thing she did with things she read clearly: let them be what they were without intervening. He trusted her to do this. He trusted all of them, in the specific ways he had built the trust, and the trust was one of the few things this morning that felt as solid as it had felt before.
+He had not been operational since the archive last night. He understood that this was visible: he was not in his post, he had not appeared for the morning's first tasks, and the team would read it. Mira would read it most clearly, and most accurately, and would do the thing she did with things she read clearly: let them be what they were without intervening. He trusted her to do this. He trusted all of them, in the specific ways he had built the trust, and the trust was one of the few things this morning that felt as solid as it had felt before.
 
 He had built something, here. He had come to the Valley as the person who read terrain and did not enter it, and he had entered it, and it had been worth entering, and what he had built with the team was real in the same way that Lena had said the work was real. He believed it. He believed it even at the bottom.
 
@@ -116,7 +116,7 @@ But it was there.
 
 ---
 
-## Beat 5 — The Edge
+## Beat 5: The Edge
 
 He had been at the bottom before.
 

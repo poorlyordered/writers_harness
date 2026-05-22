@@ -8,7 +8,7 @@ BOOK: Shadows Awaken
 
 # Chapter 29
 
-## Beat 1 — The Exit
+## Beat 1: The Exit
 
 He did not respond.
 
@@ -36,7 +36,7 @@ They did not.
 
 ---
 
-## Beat 2 — The First Piece
+## Beat 2: The First Piece
 
 She caused the accident.
 
@@ -64,7 +64,7 @@ He did not know, sitting in the low-ceilinged space with the ambient systems hum
 
 ---
 
-## Beat 3 — The Second Piece
+## Beat 3: The Second Piece
 
 *The only thing that's ever felt like mine.*
 
@@ -94,7 +94,7 @@ He sat in what was left.
 
 ---
 
-## Beat 4 — The Bottom
+## Beat 4: The Bottom
 
 He did not contact anyone.
 
@@ -118,7 +118,7 @@ He sat at the bottom. He had not chosen to be there, and he did not know how to 
 
 ---
 
-## Beat 5 — The Night
+## Beat 5: The Night
 
 He did sleep eventually. Not a decision: the body's requirement overriding the rest of it, the specific insistence of a system that does not negotiate.
 
